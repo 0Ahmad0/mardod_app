@@ -2,7 +2,6 @@ class Strings {
   static const String appName = 'مردود';
   static const String nextText = 'التالي';
   static const String loginText = 'تسجيل الدخول';
-  static const String requiredFieldText = 'هذا الحقل مطلوب!';
   static const String emailOrUsernameHintText =
       'البريد الإلكتروني او اسم المستخدم';
   static const String passwordHintText = 'كلمة المرور';
@@ -82,10 +81,9 @@ class Strings {
   static const String pickFromCameraText = 'اختيار من الكاميرا';
   static const String pickFromGalleryText = 'اختيار من المعرض';
   static const String deletePhotoText = 'حذف الصورة';
+  static const String requiredFieldText = 'هذا الحقل مطلوب!';
 
-  static const String thisEmailNotValidText = 'البريد الإلكتروني غير صالح';
-  static const String passwordNotValidText = 'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، مع حرف كبير وصغير ورقم ورمز خاص.';
-  static const String confirmPasswordNotValidText = 'كلمتا المرور غير متطابقتين';
-  static const String userNameNotValidText = 'يجب إدخال اسم مستخدم صحيح';
-  static const String userNameOrEmailNotValidText = 'يجب إدخال بريد إلكتروني صالح أو اسم مستخدم صحيح';
+
+
+
 }

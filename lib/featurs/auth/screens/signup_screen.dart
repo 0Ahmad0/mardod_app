@@ -6,7 +6,7 @@ import 'package:mardod/featurs/auth/screens/login_screen.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/constants.dart';
-import '../../../core/helper/validator_helper.dart';
+import '../../../core/helper/validator/validator_helper.dart';
 import '../../../core/strings.dart';
 import '../../home/screens/home_screen.dart';
 import '../../widgets/app_button_widget.dart';

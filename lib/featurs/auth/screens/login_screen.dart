@@ -17,7 +17,7 @@ import 'package:mardod/featurs/widgets/app_textfield_widget.dart';
 import 'package:mardod/featurs/widgets/general_dialog_shape_widget.dart';
 import 'package:mardod/featurs/widgets/logo_widget.dart';
 
-import '../../../core/helper/validator_helper.dart';
+import '../../../core/helper/validator/validator_helper.dart';
 import '../../widgets/app_button_widget.dart';
 
 class LoginScreen extends StatefulWidget {
