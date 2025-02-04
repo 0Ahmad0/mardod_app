@@ -76,6 +76,16 @@ class Strings {
   static const String popularTitlesText = 'العناوين الشائعة';
   static const String saveInformationSuccessfulText = 'تم الحفظ بنجاح';
   static const String areYouSureDeleteAccountText = 'هل أنت متأكد من حذف الحساب؟';
+  static const String successfulDeleteAccountText = 'تم حذف الحساب بنجاح';
   static const String reportWasReceivedSuccessfullyText = 'تم استلام البلاغ بنجاح';
   static const String currentPasswordText = 'كلمة المرور الحالية';
+  static const String pickFromCameraText = 'اختيار من الكاميرا';
+  static const String pickFromGalleryText = 'اختيار من المعرض';
+  static const String deletePhotoText = 'حذف الصورة';
+
+  static const String thisEmailNotValidText = 'البريد الإلكتروني غير صالح';
+  static const String passwordNotValidText = 'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، مع حرف كبير وصغير ورقم ورمز خاص.';
+  static const String confirmPasswordNotValidText = 'كلمتا المرور غير متطابقتين';
+  static const String userNameNotValidText = 'يجب إدخال اسم مستخدم صحيح';
+  static const String userNameOrEmailNotValidText = 'يجب إدخال بريد إلكتروني صالح أو اسم مستخدم صحيح';
 }

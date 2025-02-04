@@ -6,6 +6,7 @@ import 'package:mardod/featurs/auth/screens/login_screen.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/constants.dart';
+import '../../../core/helper/validator_helper.dart';
 import '../../../core/strings.dart';
 import '../../home/screens/home_screen.dart';
 import '../../widgets/app_button_widget.dart';
@@ -26,7 +27,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
   final _fullNameController = TextEditingController();
   final _userNameController = TextEditingController();
-  final _emailOrUsernameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
@@ -36,7 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
   void dispose() {
     _fullNameController.dispose();
     _userNameController.dispose();
-    _emailOrUsernameController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
@@ -74,35 +75,70 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: SliverList.list(
                   children: [
                     AppTextField(
+                      controller: _fullNameController,
                       hintText: Strings.fullNameText,
+                      validator: (value) {
+                        return FieldValidator([
+                          RequiredValidator(),
+                          LengthValidator(min: 2, max: 20),
+                        ]).validate(value ?? "");
+                      },
                     ),
                     SizedBox(
                       height: 20.h,
                     ),
                     AppTextField(
+                      controller: _userNameController,
                       hintText: Strings.userNameText,
+                      validator: (value) {
+                        return FieldValidator(
+                                [RequiredValidator(), UsernameValidator()])
+                            .validate(value ?? "");
+                      },
                     ),
                     SizedBox(
                       height: 20.h,
                     ),
                     AppTextField(
+                      controller: _emailController,
                       hintText: Strings.emailText,
+                      validator: (value) {
+                        return FieldValidator(
+                                [RequiredValidator(), EmailValidator()])
+                            .validate(value ?? "");
+                      },
                     ),
                     SizedBox(
                       height: 20.h,
                     ),
                     AppTextField(
+                      controller: _passwordController,
                       hintText: Strings.passwordHintText,
                       obscureText: true,
                       suffixIcon: true,
+                      validator: (value) {
+                        return FieldValidator([
+                          RequiredValidator(),
+                          PasswordValidator(),
+                        ]).validate(value ?? "");
+                      },
                     ),
                     SizedBox(
                       height: 20.h,
                     ),
                     AppTextField(
+                      controller: _confirmPasswordController,
                       hintText: Strings.confirmPasswordText,
                       obscureText: true,
                       suffixIcon: true,
+                      validator: (value) {
+                        return FieldValidator([
+                          RequiredValidator(),
+                          ConfirmPasswordValidator(
+                            password: _passwordController.text,
+                          ),
+                        ]).validate(value ?? "");
+                      },
                     ),
                     SizedBox(
                       height: 20.h,
@@ -117,7 +153,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           value: _acceptTermsAndConditions,
                           activeColor: ColorsManager.pinkColor,
                           materialTapTargetSize:
-                          MaterialTapTargetSize.shrinkWrap,
+                              MaterialTapTargetSize.shrinkWrap,
                           side: BorderSide(
                               color: ColorsManager.borderCheckBoxColor,
                               width: 1.5.sp),
@@ -156,24 +192,22 @@ class _SignupScreenState extends State<SignupScreen> {
                         )
                       ],
                     ),
-
                     SizedBox(
                       height: 20.h,
                     ),
                     AppAuthButtonWidget(
-                      onPressed:
-                      (!_acceptTermsAndConditions)
+                      onPressed: (!_acceptTermsAndConditions)
                           ? null
                           : () {
-                        if (_formKey.currentState!.validate()) {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => HomeScreen(),
-                            ),
-                          );
-                        }
-                      },
+                              if (_formKey.currentState!.validate()) {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => HomeScreen(),
+                                  ),
+                                );
+                              }
+                            },
                       text: Strings.createNewAccountText,
                     ),
                     SizedBox(
@@ -215,9 +249,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         CircleAvatar(
                           backgroundColor:
-                          Theme
-                              .of(context)
-                              .scaffoldBackgroundColor,
+                              Theme.of(context).scaffoldBackgroundColor,
                           child: Text(Strings.orText),
                         ),
                       ],
@@ -239,11 +271,10 @@ class _SignupScreenState extends State<SignupScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: Constants.socialMediaList
                           .map(
-                            (item) =>
-                            SocialMediaWidget(
+                            (item) => SocialMediaWidget(
                               image: item,
                             ),
-                      )
+                          )
                           .toList(),
                     ),
                     SizedBox(
