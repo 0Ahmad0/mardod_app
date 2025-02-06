@@ -6,6 +6,7 @@ import 'package:mardod/featurs/app.dart';
 
 class ThemeManager {
   static final _font = GoogleFonts.tajawal();
+
   static ThemeData myTheme = ThemeData(
     appBarTheme: AppBarTheme(
       centerTitle: true,

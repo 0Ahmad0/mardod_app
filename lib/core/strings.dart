@@ -84,6 +84,12 @@ class Strings {
   static const String requiredFieldText = 'هذا الحقل مطلوب!';
 
 
+  ///<Message Firebase>//
+  static const message_success = "نجاح العملية";
+  static const message_failure = "فشل العملية";
+  static const message_successful_login = "تم تسجيل الدخول بنجاح";
+  static const message_successfully_update = "تم التحديث بنجاح";
+  static const profileUpdateSuccessFullText = "تم تحديث الملف الشخصي بنجاح";
 
 
 }
