@@ -15,6 +15,7 @@ class UserModel {
   String? typeUser;
   String? gender;
   String? state;
+  String? idGoogle;
   bool isAdd = false;
 
   bool get isAdmin=>typeUser?.toLowerCase().contains(AppConstants.collectionAdmin.toLowerCase())??false;
@@ -33,6 +34,7 @@ class UserModel {
     this.typeUser,
     this.gender,
     this.state,
+    this.idGoogle,
   });
 
   factory UserModel.fromJson(json) {
@@ -44,12 +46,13 @@ class UserModel {
       uid: json["uid"],
       name: json["name"],
       // phoneNumber: json["phoneNumber"],
-      // userName: json["userName"],
+      userName: json["userName"],
       email: json["email"],
       photoUrl: json["photoUrl"],
       typeUser: json["typeUser"],
       // gender: data["gender"],
        password:data['password'],
+      idGoogle:data['idGoogle'],
         // state:data['state']
     );
   }
@@ -70,18 +73,23 @@ class UserModel {
         'uid': uid,
         'name': name,
         'email': email,
-        // 'userName': userName,
+        'userName': userName,
         // 'phoneNumber': phoneNumber,
         'photoUrl': photoUrl,
         'typeUser': typeUser,
+        'idGoogle': idGoogle,
         // 'gender': gender,
-    'password': password==null?null:BCrypt.hashpw(password!, BCrypt.gensalt()),
+    'password': password==null?null:password,
+    // 'password': password==null?null:BCrypt.hashpw(password!, BCrypt.gensalt()),
     // 'state':state,
     // 'password': password,
       };
   /// Function to check if the password matches the hashed password
   bool checkPassword(String plainPassword) {
-    return BCrypt.checkpw(plainPassword, password??'');
+    if(password?.isEmpty??true)
+      return true;
+    return password==plainPassword;
+    // return BCrypt.checkpw(plainPassword, password??"");
   }
 }
 

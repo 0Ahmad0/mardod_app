@@ -82,6 +82,7 @@ class Strings {
   static const String pickFromGalleryText = 'اختيار من المعرض';
   static const String deletePhotoText = 'حذف الصورة';
   static const String requiredFieldText = 'هذا الحقل مطلوب!';
+  static const String unCorrectPasswordFieldText = 'كلمة السر غير صحيحة';
 
 
   ///<Message Firebase>//

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:mardod/featurs/auth/screens/successful_changed_password_screen.dart';
 
 import '../../../core/strings.dart';
+import '../../profile/controller/profile_controller.dart';
 import '../../widgets/app_button_widget.dart';
 import '../../widgets/app_padding_widget.dart';
 import '../../widgets/app_textfield_widget.dart';
@@ -91,12 +94,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 text: Strings.changePasswordText,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => SuccessfulChangedPasswordScreen(),
-                      ),
-                    );
+                    Get.put(ProfileController()).changePassword(_newPasswordController.value.text);
+
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (_) => SuccessfulChangedPasswordScreen(),
+                    //   ),
+                    // );
                   }
                 },
               )

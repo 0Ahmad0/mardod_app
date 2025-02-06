@@ -2,6 +2,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:mardod/featurs/auth/screens/login_screen.dart';
 
 import '../../../core/colors.dart';
@@ -13,6 +15,7 @@ import '../../widgets/app_button_widget.dart';
 import '../../widgets/app_padding_widget.dart';
 import '../../widgets/app_textfield_widget.dart';
 import '../../widgets/logo_widget.dart';
+import '../controller/auth_controller.dart';
 import '../widgets/show_terms_and_conditions_dialog_widget.dart';
 import '../widgets/social_media_widget.dart';
 
@@ -32,7 +35,13 @@ class _SignupScreenState extends State<SignupScreen> {
   final _confirmPasswordController = TextEditingController();
 
   bool _acceptTermsAndConditions = false;
-
+  late AuthController authController;
+  @override
+  void initState() {
+    authController= Get.put(AuthController());
+    authController.init();
+    super.initState();
+  }
   @override
   void dispose() {
     _fullNameController.dispose();
@@ -75,7 +84,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: SliverList.list(
                   children: [
                     AppTextField(
-                      controller: _fullNameController,
+                      controller: authController.nameController,
+                      // controller: _fullNameController,
                       hintText: Strings.fullNameText,
                       validator: (value) {
                         return FieldValidator([
@@ -88,7 +98,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       height: 20.h,
                     ),
                     AppTextField(
-                      controller: _userNameController,
+                      controller: authController.userNameController,
+                      // controller: _userNameController,
                       hintText: Strings.userNameText,
                       validator: (value) {
                         return FieldValidator(
@@ -100,7 +111,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       height: 20.h,
                     ),
                     AppTextField(
-                      controller: _emailController,
+                      controller: authController.emailController,
+                      // controller: _emailController,
                       hintText: Strings.emailText,
                       validator: (value) {
                         return FieldValidator(
@@ -112,7 +124,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       height: 20.h,
                     ),
                     AppTextField(
-                      controller: _passwordController,
+                      controller: authController.passwordController,
+                      // controller: _passwordController,
                       hintText: Strings.passwordHintText,
                       obscureText: true,
                       suffixIcon: true,
@@ -127,7 +140,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       height: 20.h,
                     ),
                     AppTextField(
-                      controller: _confirmPasswordController,
+                      controller: authController.confirmPasswordController,
+                      // controller: _confirmPasswordController,
                       hintText: Strings.confirmPasswordText,
                       obscureText: true,
                       suffixIcon: true,
@@ -135,7 +149,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         return FieldValidator([
                           RequiredValidator(),
                           ConfirmPasswordValidator(
-                            password: _passwordController.text,
+                            password: authController.passwordController.text,
                           ),
                         ]).validate(value ?? "");
                       },
@@ -200,12 +214,13 @@ class _SignupScreenState extends State<SignupScreen> {
                           ? null
                           : () {
                               if (_formKey.currentState!.validate()) {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => HomeScreen(),
-                                  ),
-                                );
+                                authController.signUp(context);
+                                // Navigator.pushReplacement(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (_) => HomeScreen(),
+                                //   ),
+                                // );
                               }
                             },
                       text: Strings.createNewAccountText,

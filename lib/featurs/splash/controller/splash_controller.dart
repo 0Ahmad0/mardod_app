@@ -6,6 +6,7 @@ import '../../../../core/local/storage.dart';
 import '../../../core/app_constant.dart';
 import '../../auth/controller/auth_controller.dart';
 import '../../auth/screens/login_screen.dart';
+import '../../home/screens/home_screen.dart';
 import '../../profile/controller/profile_controller.dart';
 
 
@@ -46,7 +47,7 @@ class SplashController extends GetxController with GetSingleTickerProviderStateM
       else
         // context.pushAndRemoveUntil(Routes.navbarRoute, predicate: (Route<dynamic> route) =>false);
 
-      Get.offAll(WelcomeScreen());
+      Get.offAll(HomeScreen());
     }else
      // context.pushAndRemoveUntil(Routes.loginRoute, predicate: (Route<dynamic> route) =>false);
 
@@ -57,6 +58,8 @@ class SplashController extends GetxController with GetSingleTickerProviderStateM
     // Get.put(ProfileController());
     // Get.lazyPut(() => ProfileController());
     Get.lazyPut(() => AuthController());
+
+
   }
   Future<void> initSplash(BuildContext context) async {
     await _initSplash(context);

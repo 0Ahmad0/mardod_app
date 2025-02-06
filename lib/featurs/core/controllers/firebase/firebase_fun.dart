@@ -42,7 +42,14 @@ class FirebaseFun {
         .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
     return result;
   }
-
+  static fetchUserByEmail( {required String email})  async {
+    final result=await FirebaseFirestore.instance.collection(FirebaseConstants.collectionUser)
+        .where('email',isEqualTo: email)
+        .get()
+        .then((onValueFetchUserByUserName))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
   static fetchUserByUserName( {required String userName})  async {
     final result=await FirebaseFirestore.instance.collection(FirebaseConstants.collectionUser)
         .where('userName',isEqualTo: userName)
@@ -80,11 +87,19 @@ class FirebaseFun {
     final result = await FirebaseAuth.instance
         .sendPasswordResetEmail(
       email: email,
-
       ///"temp@gmail.com",
     )
         .then((onValueSendPasswordResetEmail))
         .catchError(onError);
+    return result;
+  }
+  static checkCodeToResetPassword({required String code}) async {
+    final result = await FirebaseAuth.instance
+        .checkActionCode(code,
+    )
+        .then((onValueCheckCodeToResetPassword))
+        .catchError(onError);
+
     return result;
   }
   //
@@ -346,6 +361,14 @@ class FirebaseFun {
     return {
       'status': true,
       'message': 'Email successfully send code ',
+      'body': {}
+    };
+  }
+  static Future<Map<String, dynamic>> onValueCheckCodeToResetPassword(
+      value) async {
+    return {
+      'status': true,
+      'message': 'تم التحقق من الرمز',
       'body': {}
     };
   }

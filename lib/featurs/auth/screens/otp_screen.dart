@@ -1,13 +1,21 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:mardod/core/colors.dart';
 import 'package:mardod/core/strings.dart';
+import 'package:mardod/featurs/auth/controller/auth_controller.dart';
 import 'package:mardod/featurs/auth/screens/change_password_screen.dart';
 import 'package:mardod/featurs/widgets/app_button_widget.dart';
 import 'package:mardod/featurs/widgets/app_padding_widget.dart';
 import 'package:mardod/featurs/widgets/app_textfield_widget.dart';
 import 'package:pinput/pinput.dart';
 
+import '../../core/controllers/smtp_service.dart';
+import '../../profile/controller/profile_controller.dart';
+import '../../widgets/constants_widgets.dart';
 import '../../widgets/logo_widget.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -20,9 +28,38 @@ class OtpScreen extends StatefulWidget {
 class _OtpScreenState extends State<OtpScreen> {
   final _formKey = GlobalKey<FormState>();
   final _otpController = TextEditingController();
+  String? code;
 
+  setupCode(){
+    print("object");
+    Future.delayed(Duration(seconds: 1),() async {
+      ConstantsWidgets.showLoading();
+      print(code);
+      print( Get
+          .put(AuthController())
+          .emailController
+          .value.text ?? "");
+     await SmtpService.sendCode(code: code ?? "", name: "", email: Get
+          .put(AuthController())
+          .emailController
+          .text ?? "");
+      ConstantsWidgets.closeDialog();
+    });
+  }
+  String generateRandomCode() {
+    final random = Random();
+    code = "${random.nextInt(9000) + 1000}"; // يولد أرقام بين 100 و 999
+    return code.toString();
+  }
+  @override
+  void initState() {
+    generateRandomCode();
+    setupCode();
+    super.initState();
+  }
   @override
   void dispose() {
+
     _otpController.dispose();
     super.dispose();
   }
@@ -74,6 +111,9 @@ class _OtpScreenState extends State<OtpScreen> {
                       if(value!.isEmpty){
                         return Strings.requiredFieldText;
                       }
+                      if (value !=(code??"000")) {
+                        return "الرمزالمدخل غير صحيح، حاول مرة أخرى";
+                      }
                     },
                     defaultPinTheme: PinTheme(
                         width: 50.w,
@@ -102,6 +142,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 text: Strings.validateText,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../core/colors.dart';
 import '../../core/strings.dart';
+import 'general_dialog_shape_widget.dart';
 
 
 
@@ -45,11 +46,14 @@ class ConstantsWidgets {
     //   );});
 
 
+
       await Get.dialog(
         PopScope(
           canPop:true
           ,
-          child: Center(
+          child:
+          GeneralDialogShapeWidget()??
+          Center(
             child: Container(
               width: 80,
               height: 80,

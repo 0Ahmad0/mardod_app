@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:mardod/featurs/auth/screens/successful_changed_password_screen.dart';
 import 'package:mardod/featurs/welcome/welcome_screen.dart';
 
 import '../../../../core/local/storage.dart';
@@ -7,6 +11,7 @@ import '../../../core/helper/validator/strings_validator.dart';
 import '../../../core/strings.dart';
 import '../../core/controllers/firebase/firebase_constants.dart';
 import '../../core/controllers/firebase/firebase_fun.dart';
+import '../../home/screens/home_screen.dart';
 import '../../profile/controller/profile_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,6 +20,8 @@ import 'package:get/get.dart';
 
 import '../../splash/splash_screen.dart';
 import '../../widgets/constants_widgets.dart';
+import '../../widgets/dialog_with_shaddow_widget.dart';
+import '../screens/otp_screen.dart';
 
 
 class AuthController extends GetxController {
@@ -26,6 +33,7 @@ class AuthController extends GetxController {
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final nameController = TextEditingController();
+  final userNameController = TextEditingController();
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
@@ -36,6 +44,7 @@ class AuthController extends GetxController {
     nameController.clear();
     firstNameController.clear();
     lastNameController.clear();
+    userNameController.clear();
     emailController.clear();
     phoneController.clear();
     passwordController.clear();
@@ -181,7 +190,7 @@ class AuthController extends GetxController {
           // context.pushAndRemoveUntil(Routes.navbarRoute,
           //     predicate: (Route<dynamic> route) => false);
 
-        Get.offAll(WelcomeScreen());
+        Get.offAll(HomeScreen());
       });
     } on FirebaseAuthException catch (e) {
       String errorMessage = FirebaseFun.findTextToast(e.code);
@@ -197,8 +206,9 @@ class AuthController extends GetxController {
   }
 
   Future<void> signUp(BuildContext context) async {
-    String name = firstNameController.value.text+" "+lastNameController.value.text;
-    String userName = nameController.value.text;
+    // String name = firstNameController.value.text+" "+lastNameController.value.text;
+    String name = nameController.value.text;
+    String userName = userNameController.value.text;
     String email = emailController.value.text;
     String phoneNumber = phoneController.value.text;
     // String password = passwordController.value.text;
@@ -246,7 +256,7 @@ class AuthController extends GetxController {
         // context.pushAndRemoveUntil(Routes.navbarRoute,
         //     predicate: (Route<dynamic> route) => false);
 
-      Get.offAll(WelcomeScreen());
+      Get.offAll(HomeScreen());
     } on FirebaseAuthException catch (e) {
       String errorMessage = FirebaseFun.findTextToast(e.code);
       // context.pop();
@@ -304,12 +314,16 @@ class AuthController extends GetxController {
     Get.offAll(SplashScreen());
   }
   sendPasswordResetEmail(BuildContext context, {required String email}) async {
+
     ConstantsWidgets.showLoading();
     var result = await FirebaseFun.sendPasswordResetEmail(email: email);
     ConstantsWidgets.closeDialog();
 
     if (result['status']) {
 
+      Navigator.push(context, MaterialPageRoute(builder:
+          (_) => SuccessfulChangedPasswordScreen()
+      ),);
       // context.pushReplacement(Routes.checkYourInboxRoute);
     }else{
       ConstantsWidgets.TOAST(context,
@@ -318,6 +332,99 @@ class AuthController extends GetxController {
     return result;
 
   }
+  checkEmailIsFound(BuildContext context, {required String email}) async {
+
+    try {
+      ConstantsWidgets.showLoading();
+      var result = await FirebaseFun.fetchUserByEmail(email: email);
+
+      ///handling
+      print(result);
+      if (result['status'] && result['body'] != null) {
+        emailController.text=email;
+
+        UserModel? userModel = UserModel.fromJson(result['body']);
+
+        await auth
+            .signInWithEmailAndPassword(email: email, password: userModel.password??"")
+            .timeout(FirebaseFun.timeOut)
+            .then((value) async {
+          Get.back();
+          emailController.text=email;
+          print("emailController.text");
+          print(emailController.text);
+          Navigator.push(context, MaterialPageRoute(builder:
+              (_) => OtpScreen()
+          ),);
+        });
+      }else{
+        throw FirebaseAuthException(code: "البريد غير موجود"??result['message']);
+
+    }
+
+
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = FirebaseFun.findTextToast(e.code);
+      Get.back();
+      ConstantsWidgets.TOAST(null, textToast: errorMessage, state: false);
+    }catch(e){
+      String errorMessage = FirebaseFun.findTextToast("$e");
+      Get.back();
+      ConstantsWidgets.TOAST(null, textToast: errorMessage, state: false);
+    }
+
+  }
+
+
+  checkCodeToResetPassword(BuildContext context, {required String email}) async {
+    ConstantsWidgets.showLoading();
+    var result = await FirebaseFun.sendPasswordResetEmail(email: email);
+    ConstantsWidgets.closeDialog();
+
+    if (result['status']) {
+      Navigator.push(context, MaterialPageRoute(builder:
+          (_) => OtpScreen()
+      ),);
+      // context.pushReplacement(Routes.checkYourInboxRoute);
+    }else{
+      ConstantsWidgets.TOAST(context,
+          textToast: FirebaseFun.findTextToast(result['message'].toString()),state: result['status']);
+    }
+    return result;
+
+  }
+  Future<void> deleteAccount(BuildContext context) async {
+
+    try {
+      ConstantsWidgets.showLoading();
+      await auth
+          .currentUser?.delete()
+          .timeout(FirebaseFun.timeOut);
+      await FirebaseFirestore.instance
+          .collection(FirebaseConstants.collectionUser)
+          .doc(await AppStorage.storageRead(key: AppConstants.uidKEY))
+          .delete();
+      Get.dialog(
+       DialogWithShadowWidget(text: Strings.successfulDeleteAccountText
+        ),
+      );
+      Timer(Duration(seconds: 3), (){
+        Navigator.pop(context);
+        signOut(context);
+
+      });
+
+
+
+
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = FirebaseFun.findTextToast(e.code);
+      Get.back();
+      ConstantsWidgets.TOAST(null, textToast: errorMessage, state: false);
+
+    }
+  }
+
   @override
   void onInit() {
     // _initPageView();
@@ -360,13 +467,14 @@ class AuthController extends GetxController {
 
   @override
   void onClose() {
-    nameController.dispose();
-    firstNameController.dispose();
-    firstNameController.dispose();
-    emailController.dispose();
-    phoneController.dispose();
-    passwordController.dispose();
-    pageController.dispose();
+    // nameController.dispose();
+    // userNameController.dispose();
+    // firstNameController.dispose();
+    // firstNameController.dispose();
+    // emailController.dispose();
+    // phoneController.dispose();
+    // passwordController.dispose();
+    // pageController.dispose();
 
     super.onClose();
   }
