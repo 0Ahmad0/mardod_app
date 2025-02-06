@@ -5,6 +5,7 @@ import 'package:bcrypt/bcrypt.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -15,8 +16,10 @@ import '../../../core/app_constant.dart';
 import '../../../core/colors.dart';
 import '../../../core/strings.dart';
 import '../../auth/screens/login_screen.dart';
+import '../../auth/screens/successful_changed_password_screen.dart';
 import '../../core/controllers/firebase/firebase_fun.dart';
 import '../../widgets/constants_widgets.dart';
+import '../../widgets/dialog_with_shaddow_widget.dart';
 
 
 class ProfileController extends GetxController {
@@ -106,13 +109,14 @@ class ProfileController extends GetxController {
         photoUrl: imagePath,
         typeUser: currentUser.value?.typeUser,
         uid:currentUser.value?.uid ,
+        idGoogle:currentUser.value?.idGoogle ,
         id: currentUser.value?.id,
       );
 
       await FirebaseFirestore.instance
           .collection('Users')
           .doc(FirebaseAuth.instance.currentUser?.uid ?? '')
-          .update(userModel.toJson()).timeout(timeLimit)
+          .update(userModel.toJson().remove("password")).timeout(timeLimit)
           .then((value){
         currentUser.value=userModel;
         print(currentUser.value?.name);
@@ -120,12 +124,17 @@ class ProfileController extends GetxController {
 
         ConstantsWidgets.closeDialog();
         // Get.back();
-        Get.snackbar(
-            Strings.message_success,
-            Strings.profileUpdateSuccessFullText,
-            // Strings.message_successfully_update,
-            backgroundColor: ColorsManager.successColor
-        );
+        Get.dialog(
+            DialogWithShadowWidget(
+              text: Strings
+                  .saveInformationSuccessfulText,
+            ));
+        // Get.snackbar(
+        //     Strings.message_success,
+        //     Strings.profileUpdateSuccessFullText,
+        //     // Strings.message_successfully_update,
+        //     backgroundColor: ColorsManager.successColor
+        // );
         // if(email!=currentUser.value?.email||(password!=''&&password!=null))
         //    Get.offAll(SplashScreen());
 
@@ -205,7 +214,7 @@ class ProfileController extends GetxController {
       await FirebaseFirestore.instance
           .collection('Users')
           .doc(FirebaseAuth.instance.currentUser?.uid ?? '')
-          .update({"password":hashPassword}).timeout(timeLimit)
+          .update({"password":password}).timeout(timeLimit)
           .then((value){
         currentUser.value?.password=hashPassword;
         update();
@@ -217,6 +226,7 @@ class ProfileController extends GetxController {
             Strings.message_successfully_update,
             backgroundColor: ColorsManager.successColor
         );
+        Get.offAll(SuccessfulChangedPasswordScreen());
         // if(email!=currentUser.value?.email||(password!=''&&password!=null))
         //    Get.offAll(SplashScreen());
 
