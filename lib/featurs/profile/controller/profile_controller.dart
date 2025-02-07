@@ -205,35 +205,39 @@ class ProfileController extends GetxController {
       ) async {
     try {
       ConstantsWidgets.showLoading();
-      auth.currentUser?.updatePassword(password);
+      await auth.currentUser?.updatePassword(password).then((value) async {
+        String hashPassword=BCrypt.hashpw(password!, BCrypt.gensalt());
+        await FirebaseFirestore.instance
+            .collection('Users')
+            .doc(FirebaseAuth.instance.currentUser?.uid ?? '')
+            .update({"password":password}).timeout(timeLimit)
+            .then((value){
+          currentUser.value?.password=hashPassword;
+          update();
+
+          ConstantsWidgets.closeDialog();
+          // Get.back();
+          Get.snackbar(
+              Strings.message_success,
+              Strings.message_successfully_update,
+              backgroundColor: ColorsManager.successColor
+          );
+          Get.offAll(()=>SuccessfulChangedPasswordScreen());
+          // if(email!=currentUser.value?.email||(password!=''&&password!=null))
+          //    Get.offAll(SplashScreen());
+
+        });
+      })
+      ;
 
 
-      String hashPassword=BCrypt.hashpw(password!, BCrypt.gensalt());
-      await FirebaseFirestore.instance
-          .collection('Users')
-          .doc(FirebaseAuth.instance.currentUser?.uid ?? '')
-          .update({"password":password}).timeout(timeLimit)
-          .then((value){
-        currentUser.value?.password=hashPassword;
-        update();
 
-        ConstantsWidgets.closeDialog();
-        // Get.back();
-        Get.snackbar(
-            Strings.message_success,
-            Strings.message_successfully_update,
-            backgroundColor: ColorsManager.successColor
-        );
-        Get.offAll(()=>SuccessfulChangedPasswordScreen());
-        // if(email!=currentUser.value?.email||(password!=''&&password!=null))
-        //    Get.offAll(SplashScreen());
-
-      });
 
     } catch (e) {
       String errorMessage;
       // errorMessage = "An unexpected error occurred. Please try again later.";
       errorMessage = "An unexpected error occurred. Please try again later.";
+      errorMessage = "حدث خطأ، حاول مرة أخرى لاحقاً";
       ConstantsWidgets.closeDialog();
       // Get.back();
       Get.snackbar(
