@@ -31,8 +31,8 @@ class ColorsManager {
   static const Color chatBotMessageShapeColor= Color(0xffC2ADF7);
 
 
-  static const Color errorColor= Colors.red;
-  static const Color successColor = Color(0xffB9E7BD);
+  static const Color errorColor= Color(0xffbe4747);
+  static const Color successColor = Color(0xff47be4c);
 
 
 

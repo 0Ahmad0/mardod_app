@@ -16,7 +16,6 @@ import 'package:mardod/featurs/auth/widgets/social_media_widget.dart';
 import 'package:mardod/featurs/home/screens/home_screen.dart';
 import 'package:mardod/featurs/widgets/app_padding_widget.dart';
 import 'package:mardod/featurs/widgets/app_textfield_widget.dart';
-import 'package:mardod/featurs/widgets/general_dialog_shape_widget.dart';
 import 'package:mardod/featurs/widgets/logo_widget.dart';
 
 import '../../../core/helper/validator/validator_helper.dart';

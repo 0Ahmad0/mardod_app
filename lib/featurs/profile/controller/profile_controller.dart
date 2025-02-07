@@ -1,14 +1,12 @@
 import 'dart:io';
 
 import 'package:bcrypt/bcrypt.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../core/local/storage.dart';
 import '../../../../core/models/user_model.dart';
@@ -226,7 +224,7 @@ class ProfileController extends GetxController {
             Strings.message_successfully_update,
             backgroundColor: ColorsManager.successColor
         );
-        Get.offAll(SuccessfulChangedPasswordScreen());
+        Get.offAll(()=>SuccessfulChangedPasswordScreen());
         // if(email!=currentUser.value?.email||(password!=''&&password!=null))
         //    Get.offAll(SplashScreen());
 
@@ -282,7 +280,7 @@ class ProfileController extends GetxController {
       );
       // context.pushAndRemoveUntil(Routes.loginRoute, predicate: (Route<dynamic> route) =>false);
 
-      Get.offAll(LoginScreen());
+      Get.offAll(()=>LoginScreen());
     }
   }
 

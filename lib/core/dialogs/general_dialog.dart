@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mardod/core/colors.dart';
 import 'package:mardod/featurs/widgets/general_dialog_shape_widget.dart';
 
 abstract class GeneralDialog {

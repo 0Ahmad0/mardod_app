@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:mardod/core/assets_manager.dart';
 import 'package:mardod/core/colors.dart';
-import 'package:mardod/core/theme_manager.dart';
 import 'package:mardod/featurs/widgets/app_padding_widget.dart';
 
 import '../../../core/models/chat_model.dart';

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:mardod/featurs/auth/screens/change_password_screen.dart';
-import 'package:mardod/featurs/auth/screens/login_screen.dart';
 import 'package:mardod/featurs/widgets/app_textfield_profile_widget.dart';
 
 import '../../../core/colors.dart';

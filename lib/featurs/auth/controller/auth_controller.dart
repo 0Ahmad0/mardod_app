@@ -2,27 +2,24 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mardod/featurs/auth/screens/successful_changed_password_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:mardod/featurs/welcome/welcome_screen.dart';
 
 import '../../../../core/local/storage.dart';
 import '../../../../core/models/user_model.dart';
 import '../../../core/app_constant.dart';
-import '../../../core/helper/validator/strings_validator.dart';
 import '../../../core/strings.dart';
 import '../../core/controllers/firebase/firebase_constants.dart';
 import '../../core/controllers/firebase/firebase_fun.dart';
 import '../../home/screens/home_screen.dart';
 import '../../profile/controller/profile_controller.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-
 import '../../splash/splash_screen.dart';
 import '../../widgets/constants_widgets.dart';
 import '../../widgets/dialog_with_shaddow_widget.dart';
 import '../screens/otp_screen.dart';
-
 
 class AuthController extends GetxController {
   var formKey = GlobalKey<FormState>();
@@ -38,7 +35,8 @@ class AuthController extends GetxController {
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  String typeUser=AppConstants.collectionUser;
+  String typeUser = AppConstants.collectionUser;
+
   init() {
     formKey = GlobalKey<FormState>();
     nameController.clear();
@@ -49,7 +47,7 @@ class AuthController extends GetxController {
     phoneController.clear();
     passwordController.clear();
     confirmPasswordController.clear();
-    typeUser=AppConstants.collectionUser;
+    typeUser = AppConstants.collectionUser;
   }
 
   int currentIndex = 0;
@@ -128,7 +126,6 @@ class AuthController extends GetxController {
   // }
   //
 
-
   Future<void> login(BuildContext context) async {
     String userName = emailController.value.text;
     String password = passwordController.value.text;
@@ -175,11 +172,11 @@ class AuthController extends GetxController {
         await profileController.getUser(context);
         Get.back();
         // context.pop();
-        if(profileController.currentUser.value==null)
-          return;
+        if (profileController.currentUser.value == null) return;
         ConstantsWidgets.TOAST(null,
             textToast: Strings.message_successful_login, state: true);
-        if (profileController.currentUser.value?.isAdmin ?? false);
+        if (profileController.currentUser.value?.isAdmin ?? false)
+          ;
         // context.pushAndRemoveUntil(Routes.adminNavbarRoute,
         //     predicate: (Route<dynamic> route) => false);
 
@@ -190,7 +187,7 @@ class AuthController extends GetxController {
           // context.pushAndRemoveUntil(Routes.navbarRoute,
           //     predicate: (Route<dynamic> route) => false);
 
-        Get.offAll(HomeScreen());
+          Get.offAll(() => HomeScreen());
       });
     } on FirebaseAuthException catch (e) {
       String errorMessage = FirebaseFun.findTextToast(e.code);
@@ -245,7 +242,8 @@ class AuthController extends GetxController {
       ProfileController profileController = Get.put(ProfileController());
       profileController.currentUser.value = user;
       // if(profileController.currentUser.value?.isAdmin??false)
-      if (user.isAdmin);
+      if (user.isAdmin)
+        ;
       // context.pushAndRemoveUntil(Routes.adminNavbarRoute,
       //     predicate: (Route<dynamic> route) => false);
 
@@ -256,7 +254,7 @@ class AuthController extends GetxController {
         // context.pushAndRemoveUntil(Routes.navbarRoute,
         //     predicate: (Route<dynamic> route) => false);
 
-      Get.offAll(HomeScreen());
+        Get.offAll(()=>HomeScreen());
     } on FirebaseAuthException catch (e) {
       String errorMessage = FirebaseFun.findTextToast(e.code);
       // context.pop();
@@ -311,29 +309,29 @@ class AuthController extends GetxController {
     // context.pushAndRemoveUntil(Routes.initialRoute,
     //     predicate: (Route<dynamic> route) => false);
 
-    Get.offAll(SplashScreen());
+    Get.offAll(()=>SplashScreen());
   }
-  sendPasswordResetEmail(BuildContext context, {required String email}) async {
 
+  sendPasswordResetEmail(BuildContext context, {required String email}) async {
     ConstantsWidgets.showLoading();
     var result = await FirebaseFun.sendPasswordResetEmail(email: email);
     ConstantsWidgets.closeDialog();
 
     if (result['status']) {
-
-      Navigator.push(context, MaterialPageRoute(builder:
-          (_) => SuccessfulChangedPasswordScreen()
-      ),);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => SuccessfulChangedPasswordScreen()),
+      );
       // context.pushReplacement(Routes.checkYourInboxRoute);
-    }else{
+    } else {
       ConstantsWidgets.TOAST(context,
-          textToast: FirebaseFun.findTextToast(result['message'].toString()),state: result['status']);
+          textToast: FirebaseFun.findTextToast(result['message'].toString()),
+          state: result['status']);
     }
     return result;
-
   }
-  checkEmailIsFound(BuildContext context, {required String email}) async {
 
+  checkEmailIsFound(BuildContext context, {required String email}) async {
     try {
       ConstantsWidgets.showLoading();
       var result = await FirebaseFun.fetchUserByEmail(email: email);
@@ -341,87 +339,78 @@ class AuthController extends GetxController {
       ///handling
       print(result);
       if (result['status'] && result['body'] != null) {
-        emailController.text=email;
+        emailController.text = email;
 
         UserModel? userModel = UserModel.fromJson(result['body']);
 
         await auth
-            .signInWithEmailAndPassword(email: email, password: userModel.password??"")
+            .signInWithEmailAndPassword(
+                email: email, password: userModel.password ?? "")
             .timeout(FirebaseFun.timeOut)
             .then((value) async {
           Get.back();
-          emailController.text=email;
+          emailController.text = email;
           print("emailController.text");
           print(emailController.text);
-          Navigator.push(context, MaterialPageRoute(builder:
-              (_) => OtpScreen()
-          ),);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => OtpScreen()),
+          );
         });
-      }else{
-        throw FirebaseAuthException(code: "البريد غير موجود"??result['message']);
-
-    }
-
-
+      } else {
+        throw FirebaseAuthException(
+            code: "البريد غير موجود" ?? result['message']);
+      }
     } on FirebaseAuthException catch (e) {
       String errorMessage = FirebaseFun.findTextToast(e.code);
       Get.back();
       ConstantsWidgets.TOAST(null, textToast: errorMessage, state: false);
-    }catch(e){
+    } catch (e) {
       String errorMessage = FirebaseFun.findTextToast("$e");
       Get.back();
       ConstantsWidgets.TOAST(null, textToast: errorMessage, state: false);
     }
-
   }
 
-
-  checkCodeToResetPassword(BuildContext context, {required String email}) async {
+  checkCodeToResetPassword(BuildContext context,
+      {required String email}) async {
     ConstantsWidgets.showLoading();
     var result = await FirebaseFun.sendPasswordResetEmail(email: email);
     ConstantsWidgets.closeDialog();
 
     if (result['status']) {
-      Navigator.push(context, MaterialPageRoute(builder:
-          (_) => OtpScreen()
-      ),);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => OtpScreen()),
+      );
       // context.pushReplacement(Routes.checkYourInboxRoute);
-    }else{
+    } else {
       ConstantsWidgets.TOAST(context,
-          textToast: FirebaseFun.findTextToast(result['message'].toString()),state: result['status']);
+          textToast: FirebaseFun.findTextToast(result['message'].toString()),
+          state: result['status']);
     }
     return result;
-
   }
-  Future<void> deleteAccount(BuildContext context) async {
 
+  Future<void> deleteAccount(BuildContext context) async {
     try {
       ConstantsWidgets.showLoading();
-      await auth
-          .currentUser?.delete()
-          .timeout(FirebaseFun.timeOut);
+      await auth.currentUser?.delete().timeout(FirebaseFun.timeOut);
       await FirebaseFirestore.instance
           .collection(FirebaseConstants.collectionUser)
           .doc(await AppStorage.storageRead(key: AppConstants.uidKEY))
           .delete();
       Get.dialog(
-       DialogWithShadowWidget(text: Strings.successfulDeleteAccountText
-        ),
+        DialogWithShadowWidget(text: Strings.successfulDeleteAccountText),
       );
-      Timer(Duration(seconds: 3), (){
+      Timer(Duration(seconds: 3), () {
         Navigator.pop(context);
         signOut(context);
-
       });
-
-
-
-
     } on FirebaseAuthException catch (e) {
       String errorMessage = FirebaseFun.findTextToast(e.code);
       Get.back();
       ConstantsWidgets.TOAST(null, textToast: errorMessage, state: false);
-
     }
   }
 
@@ -434,22 +423,32 @@ class AuthController extends GetxController {
 
     super.onInit();
   }
+
   Future<void> seeder() async {
-    List<UserModel> users=[
-      UserModel(email: 'admin@gmail.com', name: 'Admin Acc', password: '12345678', typeUser: AppConstants.collectionAdmin),
+    List<UserModel> users = [
+      UserModel(
+          email: 'admin@gmail.com',
+          name: 'Admin Acc',
+          password: '12345678',
+          typeUser: AppConstants.collectionAdmin),
       // UserModel(email: 'worker@gmail.com', name: 'Worker Acc', password: '12345678', typeUser: AppConstants.collectionWorker),
-      UserModel(email: 'user@gmail.com', name: 'User Acc', password: '12345678', typeUser: AppConstants.collectionUser),
+      UserModel(
+          email: 'user@gmail.com',
+          name: 'User Acc',
+          password: '12345678',
+          typeUser: AppConstants.collectionUser),
       // UserModel(email: 'owner@gmail.com', name: 'Owner Acc', password: '12345678', typeUser: AppConstants.collectionOwner),
       // UserModel(email: 'mr.ahmadmriwed@gmail.com', name: 'Ahmad Mriwed', password: '12345678', typeUser: AppConstants.collectionUser,phoneNumber: '0937954969'),
     ];
     try {
       ConstantsWidgets.showLoading();
-      for(UserModel userModel in users){
+      for (UserModel userModel in users) {
         UserCredential userCredential = await auth
-            .createUserWithEmailAndPassword(email: userModel.email!, password: userModel.password!)
+            .createUserWithEmailAndPassword(
+                email: userModel.email!, password: userModel.password!)
             .timeout(FirebaseFun.timeOut);
-        if(userCredential.user!=null){
-          userModel.uid=userCredential.user!.uid;
+        if (userCredential.user != null) {
+          userModel.uid = userCredential.user!.uid;
           await FirebaseFirestore.instance
               .collection(FirebaseConstants.collectionUser)
               .doc(userModel.uid)
@@ -464,7 +463,6 @@ class AuthController extends GetxController {
     }
   }
 
-
   @override
   void onClose() {
     // nameController.dispose();
@@ -478,5 +476,4 @@ class AuthController extends GetxController {
 
     super.onClose();
   }
-
 }

@@ -1,4 +1,4 @@
-class AssetsManager                        {
+class AssetsManager{
   static const _imgPath = 'assets/images';
   static const _lottiePath = 'assets/lottie';
 
