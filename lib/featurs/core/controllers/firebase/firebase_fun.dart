@@ -179,6 +179,24 @@ class FirebaseFun {
         .catchError(onError);
     return result;
   }
+  static Future deleteChatsByIdUser({required List listIdUser}) async {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection(FirebaseConstants.collectionChat)
+        .where('listIdUser', arrayContainsAny: listIdUser)
+        .get();
+
+    // استخدام batch لحذف المستندات بشكل جماعي
+    WriteBatch batch = FirebaseFirestore.instance.batch();
+
+    for (var doc in querySnapshot.docs) {
+      batch.delete(doc.reference);
+    }
+
+    final result = await batch.commit().then(onValueDeleteChat)
+        .catchError(onError);
+    return result;
+  }
+
   static updateChat( {required Chat chat}) async {
     final result= await FirebaseFirestore.instance.collection(FirebaseConstants.collectionChat).doc(
         chat.id

@@ -33,6 +33,7 @@ class Strings {
   static const String saveText = 'حفظ';
   static const String deleteAccountText = 'حذف الحساب';
   static const String noMessagesYetText = '😢لا يوجد رسائل😢';
+  static const String noRecordsYetText = '😢لا يوجد سجلات😢';
   static const String thanksText = 'شكرًا لتقييمك!';
   static const String sorryForYouText = 'نأسف لعدم رضاك عن الإجابة';
   static const String yourNotesIsImportantText =
@@ -83,6 +84,9 @@ class Strings {
   static const String deletePhotoText = 'حذف الصورة';
   static const String requiredFieldText = 'هذا الحقل مطلوب!';
   static const String unCorrectPasswordFieldText = 'كلمة السر غير صحيحة';
+  static const String errorTryAgainLater = 'حدث خطأ، حاول مرة أخرى';
+  static const String emptyData = 'لا يوجد بيانات';
+  static const String loadingText = 'جاري التحميل ..';
 
 
   ///<Message Firebase>//

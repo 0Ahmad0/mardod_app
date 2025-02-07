@@ -160,28 +160,28 @@ class DrawerWidget extends StatelessWidget {
                         name: Strings.clearLogText,
                         icon: AssetsManager.clearLogIconIMG,
                         onTap: (){
-                          showDialog(
-                            context: context,
-                            builder: (context) =>
-                                DialogWithShadowWidget(
-                                    text: Strings.clearLogDoneText
-                                ),
-                          );
+                          // showDialog(
+                          //   context: context,
+                          //   builder: (context) =>
+                          //       DialogWithShadowWidget(
+                          //           text: Strings.clearLogDoneText
+                          //       ),
+                          // );
                         },
                       ),
-                      DrawerItemWidget(
-                        name: Strings.freeSpaceText,
-                        icon: AssetsManager.freeSpaceIconIMG,
-                        onTap: (){
-                          showDialog(
-                            context: context,
-                            builder: (context) =>
-                                DialogWithShadowWidget(
-                                    text: Strings.freeSpaceDoneText
-                                ),
-                          );
-                        },
-                      ),
+                      // DrawerItemWidget(
+                      //   name: Strings.freeSpaceText,
+                      //   icon: AssetsManager.freeSpaceIconIMG,
+                      //   onTap: (){
+                      //     showDialog(
+                      //       context: context,
+                      //       builder: (context) =>
+                      //           DialogWithShadowWidget(
+                      //               text: Strings.freeSpaceDoneText
+                      //           ),
+                      //     );
+                      //   },
+                      // ),
                     ],
 
                   ),
