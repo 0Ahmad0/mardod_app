@@ -148,12 +148,13 @@ class ChatRoomController extends GetxController{
     if (message.trim().isEmpty) return "";
 
     String contextMessage =
-        chat?.idGroup==null?"":
+        chat?.idGroup=="قم بالجواب وفق السؤال او النص المرسل في الاخير\n"?"":
         "مرحبا،اريد الاجابات ان تكون متعلقة ضمن نطاق الموضوع الرئيسي او المكان:"
         +"\n"
         +"-الموضوع الرئيسي أو المنطقة أو المكان: ${chat?.idGroup??''}"
         +"\n"
             ;
+
     contextMessage+="-أخر 10 رسائل ارسلتها لك بدون اجاباتك، اعتبرها كأنها سجل سابق للمحادثة، ولا داعي لذكر اني ارست لك سجل سابق للمحادثة هذا فقط لكي انت يصبح لديك ذاكرة:"
         +"\n"
             "${lastTenQuestion}"
