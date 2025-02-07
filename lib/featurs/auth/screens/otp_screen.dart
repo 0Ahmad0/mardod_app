@@ -36,7 +36,7 @@ class _OtpScreenState extends State<OtpScreen> {
         .emailController
         .value.text;
     Future.delayed(Duration(seconds: 1),() async {
-      ConstantsWidgets.showLoading();
+      // ConstantsWidgets.showLoading();
       print(code);
       print( Get
           .put(AuthController())
@@ -46,7 +46,7 @@ class _OtpScreenState extends State<OtpScreen> {
           .put(AuthController())
           .emailController
           .text ?? "");
-      ConstantsWidgets.closeDialog();
+      // ConstantsWidgets.closeDialog();
     });
   }
   String generateRandomCode() {
