@@ -6,30 +6,19 @@ import 'package:mardod/firebase_options.dart';
 import 'featurs/app.dart';
 import 'featurs/core/controllers/connection_time.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   /// To Init Firebase
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
-
-
-  await GetStorage.init();
+   await Future.wait([
+    Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
+    GetStorage.init(),
+    ScreenUtil.ensureScreenSize()
+  ]);
 
   /// for show last connection
+
   ConnectionTime.instance.connectTime();
-
-
-  // await FlutterDownloader.initialize(
-  //     debug: true,
-  //     ignoreSsl: true
-  // );
-  // await requestAllPermissions();
-
-
-  /// To Fix Bug In Text Showing In Release Mode
-  await ScreenUtil.ensureScreenSize();
 
   runApp(
     const MardodApp(),
