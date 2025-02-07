@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:mardod/featurs/auth/screens/successful_changed_password_screen.dart';
 
+import '../../../core/helper/validator/validator_helper.dart';
 import '../../../core/strings.dart';
 import '../../profile/controller/profile_controller.dart';
 import '../../widgets/app_button_widget.dart';
@@ -74,6 +75,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       hintText: Strings.newPasswordText,
                       suffixIcon: true,
                       obscureText: true,
+                        validator: (value){
+                          return FieldValidator([
+                            RequiredValidator(),
+                            PasswordValidator(),
+                          ]).validate(value ?? "");
+                        }
                     ),
                     SizedBox(
                       height: 20.h,
@@ -83,6 +90,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       hintText: Strings.confirmNewPasswordText,
                       suffixIcon: true,
                       obscureText: true,
+                        validator: (value) {
+                          return FieldValidator([
+                            RequiredValidator(),
+                            ConfirmPasswordValidator(
+                              password: _confirmNewPasswordController.text,
+                            ),
+                          ]).validate(value ?? "");
+                        }
                     ),
                   ],
                 ),

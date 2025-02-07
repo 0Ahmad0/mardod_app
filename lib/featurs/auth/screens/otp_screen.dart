@@ -28,9 +28,13 @@ class _OtpScreenState extends State<OtpScreen> {
   final _formKey = GlobalKey<FormState>();
   final _otpController = TextEditingController();
   String? code;
+  String? email;
 
   setupCode(){
-    print("object");
+    email=Get
+        .put(AuthController())
+        .emailController
+        .value.text;
     Future.delayed(Duration(seconds: 1),() async {
       ConstantsWidgets.showLoading();
       print(code);
@@ -96,7 +100,8 @@ class _OtpScreenState extends State<OtpScreen> {
                     TextSpan(
                       text: Strings.weWillSentCodeText,
                     ),
-                    TextSpan(text: 'ma*****@gmail.com'),
+                    TextSpan(text: '${((email??"")+"--").substring(0,2)}*****@gmail.com'),
+                    // TextSpan(text: 'ma*****@gmail.com'),
                   ])),
               SizedBox(
                 height: 80.h,
