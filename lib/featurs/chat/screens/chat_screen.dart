@@ -81,9 +81,9 @@ class _ChatScreenState extends State<ChatScreen> {
 
                 // ConstantsWidgets.circularProgress();
                 controller.chat?.messages.clear();
-                if (snapshot.data!.docs!.length > 1) {
+                if (snapshot.data!.docs.length > 1) {
                   controller.chat?.messages =
-                      Messages.fromJson(snapshot.data!.docs!).listMessage;
+                      Messages.fromJson(snapshot.data!.docs).listMessage;
                 }
 
                 return GetBuilder<ChatRoomController>(
@@ -95,9 +95,9 @@ class _ChatScreenState extends State<ChatScreen> {
                       // if(message!=null)
                       //   controller.chat?.messages.add( message);
                       controller.waitMessage.map((e)=>e.checkSend=false);
-                      controller.chatList?.clear();
-                      controller.chatList?.addAll(controller.chat?.messages??[]);
-                      controller.chatList?.addAll(controller.waitMessage);
+                      controller.chatList.clear();
+                      controller.chatList.addAll(controller.chat?.messages??[]);
+                      controller.chatList.addAll(controller.waitMessage);
                       controller.chatList.sort((a, b) => a.sendingTime!.compareTo(b.sendingTime!));
 
 

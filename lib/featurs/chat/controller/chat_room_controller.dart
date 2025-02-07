@@ -36,7 +36,7 @@ class ChatRoomController extends GetxController{
     model = GenerativeModel(
       model: 'gemini-1.5-flash',
       //TODO: add key here
-      apiKey: "",
+      apiKey: "AIzaSyBgpa0s0IvpB7yFW6kcLfmyrgssS8XZR_A",
     );
     messageController.clear();
     waitMessage.clear();
