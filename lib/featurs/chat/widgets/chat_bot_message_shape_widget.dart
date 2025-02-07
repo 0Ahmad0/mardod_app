@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:mardod/featurs/chat/widgets/show_thanks_dialog_widget.dart';
@@ -19,6 +20,7 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizer = MediaQuery.sizeOf(context).width;
     final bool isError=item?.textMessage.contains( Strings.errorTryAgainLater)??false;
+    final bool isLoading=!(item?.checkSend??false);
     return Column(
       children: [
         Row(
@@ -55,11 +57,25 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
                             ColorsManager.errorColor.withOpacity(.6)
                             : ColorsManager.chatBotMessageShapeColor.withOpacity(.8),
                   ),
-                  child: Text(
-                    text,
-                    style: TextStyle(
-                        fontSize: 14.sp, color: ColorsManager.whiteColor),
-                  ),
+                  child:
+
+                  MarkdownBody(
+                    data: text as String,
+                    styleSheet: MarkdownStyleSheet(
+                      p:  TextStyle(color: ColorsManager.whiteColor, fontSize: 16.sp),
+                      strong:  TextStyle(color: ColorsManager.whiteColor, fontWeight: FontWeight.bold),
+                      em:  TextStyle(color: ColorsManager.whiteColor, fontStyle: FontStyle.italic),
+                      h1:  TextStyle(color: ColorsManager.whiteColor, fontSize: 24.sp, fontWeight: FontWeight.bold),
+                      h2:  TextStyle(color: ColorsManager.whiteColor, fontSize: 22.sp, fontWeight: FontWeight.bold),
+                      h3:  TextStyle(color: ColorsManager.whiteColor, fontSize: 20.sp, fontWeight: FontWeight.bold),
+                      a:  TextStyle(color: Colors.lightBlue), // تنسيق الروابط
+                    ),
+                  )
+                  // Text(
+                  //   text,
+                  //   style: TextStyle(
+                  //       fontSize: 14.sp, color: ColorsManager.whiteColor),
+                  // ),
                 ),
                 PositionedDirectional(
                   bottom: -20,
@@ -73,7 +89,7 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
                   ),
                 ),
                 Visibility(
-                  visible: !isError,
+                  visible: !isError&&!isLoading,
                   child: PositionedDirectional(
                     bottom: -14.w,
                     start: 20.w,
