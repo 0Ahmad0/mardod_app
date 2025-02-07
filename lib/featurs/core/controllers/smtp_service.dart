@@ -64,7 +64,7 @@ class SmtpService{
       </div>
       <div class="footer">
         <p>${_nameTeam} Inc. | 1234 Address St, City, Country</p>
-        <p><a href="mailto:$_email">support@smart_cleaner.com</a></p>
+        <p><a href="mailto:$_email">support@mardod.com</a></p>
       </div>
     </div>
   </body>
