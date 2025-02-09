@@ -376,6 +376,9 @@ class ChatController extends GetxController{
     //ConstantsWidgets.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
     return result;
   }
+
+
+
   deleteChatsByIdUser(context,{required List listIdUser}) async{
     ConstantsWidgets.showLoading();
     var result =await FirebaseFun

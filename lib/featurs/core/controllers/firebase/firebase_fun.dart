@@ -194,7 +194,7 @@ class FirebaseFun {
     }
 
     final result = await batch.commit().then(onValueDeleteChat)
-        .catchError(onError);
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
     return result;
   }
 
