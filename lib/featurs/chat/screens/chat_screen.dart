@@ -224,6 +224,7 @@ class _ChatScreenState extends State<ChatScreen> {
       )
           : ChatBotMessageShapeWidget(text: messages[index].textMessage,
         item: messages[index],
+        prevMessage: index==0?null:messages[index-1].textMessage,
         isLast: index==(messages.length-1),
       );
     },
