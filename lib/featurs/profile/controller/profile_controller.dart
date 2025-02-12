@@ -112,7 +112,7 @@ class ProfileController extends GetxController {
         photoUrl: imagePath,
         typeUser: currentUser.value?.typeUser,
         uid:currentUser.value?.uid ,
-        idGoogle:currentUser.value?.idGoogle ,
+          googleId:currentUser.value?.googleId ,
         id: currentUser.value?.id,
         password:  currentUser.value?.password
       );

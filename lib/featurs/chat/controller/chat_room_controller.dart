@@ -206,10 +206,13 @@ class ChatRoomController extends GetxController{
         builder: (context) => DialogWithShadowWidget(
             text: Strings
                 .reportWasReceivedSuccessfullyText));
-      Timer(Duration(seconds: 2), (){
-        Navigator.pop(context);
 
+      await Timer(Duration(seconds: 2), (){
+        Navigator.pop(context);
+        if(review.review!=true)
+        ConstantsWidgets.closeDialog();
       });
+
       //TODO dd notification
       // Get.put(NotificationsController()).addNotification(context, notification: NotificationModel(idUser: id,typeUser: AppConstants.collectionWorker
       //     , subtitle: StringManager.notificationSubTitleNewProblem+' '+(Get.put(ProfileController())?.currentUser.value?.name??''), dateTime: DateTime.now(), title: StringManager.notificationTitleNewProblem, message: ''));

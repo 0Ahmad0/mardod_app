@@ -52,6 +52,14 @@ class FirebaseFun {
         .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
     return result;
   }
+  static fetchUserByGoogleId( {required String googleId})  async {
+    final result=await FirebaseFirestore.instance.collection(FirebaseConstants.collectionUser)
+        .where('googleId',isEqualTo: googleId)
+        .get()
+        .then((onValueFetchUserByUserName))
+        .catchError(onError).timeout(timeOut,onTimeout: onTimeOut);
+    return result;
+  }
   static fetchUserByUserName( {required String userName})  async {
     final result=await FirebaseFirestore.instance.collection(FirebaseConstants.collectionUser)
         .where('userName',isEqualTo: userName)

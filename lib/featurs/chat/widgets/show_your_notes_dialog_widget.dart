@@ -96,11 +96,13 @@ class _ShowYourNotesDialogWidgetState extends State<ShowYourNotesDialogWidget> {
                         ),
                         Center(
                           child: GestureDetector(
-                            onTap: () {
+                            onTap: () async {
                               if (_formKey.currentState!.validate()) {
                                 widget.review?.note=_notesController.value.text;
-                                Get.back();
-                                Get.put(ChatRoomController()).addReport(context, review:widget.review!, message: widget.message);
+
+                              await  Get.put(ChatRoomController()).addReport(context, review:widget.review!, message: widget.message);
+                              // print("object");
+                              //   Get.back();
                                 // showDialog(
                                 //     context: context,
                                 //     builder: (context) => DialogWithShadowWidget(

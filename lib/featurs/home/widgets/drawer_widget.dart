@@ -59,6 +59,7 @@ class DrawerWidget extends StatelessWidget {
                         child:
                         GetBuilder<ProfileController>(
                             init: Get.put(ProfileController()),
+                            // init: Get.put(ProfileController()),
                             builder: (controller) {
                               return
                                 Row(

@@ -224,6 +224,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             .map(
                               (item) => SocialMediaWidget(
                                 image: item,
+                                onTap: (){
+                                  print(Constants.socialMediaList.indexOf(item));
+                                  if(Constants.socialMediaList.indexOf(item)==1)
+                                    authController.signWithGoogle(context);
+                                },
                               ),
                             )
                             .toList(),
