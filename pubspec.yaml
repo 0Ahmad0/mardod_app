@@ -54,7 +54,7 @@ dependencies:
   bcrypt:
   mailer: ^6.2.0
 
-  flutter_markdown: ^0.7.6+1
+
   animated_text_kit:
   google_sign_in: ^6.2.2
   cached_network_image: ^3.4.1

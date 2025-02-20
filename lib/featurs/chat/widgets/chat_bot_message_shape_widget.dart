@@ -41,7 +41,7 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
                 DateFormat().add_jm().format(
                   item?.sendingTime??
                       DateTime.now(),
-                    ),
+                ),
                 style: TextStyle(fontSize: 10.sp),
               ),
             ),
@@ -53,49 +53,38 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
               clipBehavior: Clip.none,
               children: [
                 Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 18.h),
-                  constraints: BoxConstraints(
-                    maxWidth: sizer - 110.w,
-                    minWidth: 180.w,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.r),
-                    color:
-                        isError?
-                            ColorsManager.errorColor.withOpacity(.6)
-                            : ColorsManager.chatBotMessageShapeColor.withOpacity(.8),
-                  ),
-                  child:
-                  // isLast&&DateTime.now().difference(item?.sendingTime??DateTime.now()).inMinutes<1?
-                  // AnimatedTextKit(
-                  //   isRepeatingAnimation:false,
-                  //   animatedTexts: [
-                  //   //   TypewriterAnimatedText(
-                  //   //
-                  //   // text,
-                  //   // cursor: '',
-                  //   // textStyle: TextStyle(
-                  //   //     fontSize: 14.sp, color: ColorsManager.whiteColor),
-                  //   //   ),
-                  //   ],
-                  // )
-                  MarkdownBody(
-                    data: text,
-                    styleSheet: MarkdownStyleSheet(
-                      p:  TextStyle(color: ColorsManager.whiteColor, fontSize: 16.sp),
-                      strong:  TextStyle(color: ColorsManager.whiteColor, fontWeight: FontWeight.bold),
-                      em:  TextStyle(color: ColorsManager.whiteColor, fontStyle: FontStyle.italic),
-                      h1:  TextStyle(color: ColorsManager.whiteColor, fontSize: 24.sp, fontWeight: FontWeight.bold),
-                      h2:  TextStyle(color: ColorsManager.whiteColor, fontSize: 22.sp, fontWeight: FontWeight.bold),
-                      h3:  TextStyle(color: ColorsManager.whiteColor, fontSize: 20.sp, fontWeight: FontWeight.bold),
-                      a:  TextStyle(color: Colors.lightBlue), // تنسيق الروابط
+                    padding:
+                    EdgeInsets.symmetric(horizontal: 12.w, vertical: 18.h),
+                    constraints: BoxConstraints(
+                      maxWidth: sizer - 110.w,
+                      minWidth: 180.w,
                     ),
-                  )
-                    //   :Text(
-                    // text,
-                    // style: TextStyle(
-                    //     fontSize: 14.sp, color: ColorsManager.whiteColor)),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12.r),
+                      color:
+                      isError?
+                      ColorsManager.errorColor.withOpacity(.6)
+                          : ColorsManager.chatBotMessageShapeColor.withOpacity(.8),
+                    ),
+                    child:
+                    isLast&&DateTime.now().difference(item?.sendingTime??DateTime.now()).inMinutes<1?
+                    AnimatedTextKit(
+                      isRepeatingAnimation:false,
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+
+                      text,
+                      cursor: '',
+                      textStyle: TextStyle(
+                          fontSize: 14.sp, color: ColorsManager.whiteColor),
+                        ),
+                      ],
+                    )
+
+                    :Text(
+                  text,
+                  style: TextStyle(
+                      fontSize: 14.sp, color: ColorsManager.whiteColor)),
 
 
                 ),
