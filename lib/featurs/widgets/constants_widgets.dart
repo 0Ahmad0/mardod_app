@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 import '../../core/colors.dart';
@@ -51,7 +52,9 @@ class ConstantsWidgets {
           canPop:true
           ,
           child:
-          GeneralDialogShapeWidget()??
+          SpinKitCubeGrid(
+            color: ColorsManager.whiteColor,
+          )??
           Center(
             child: Container(
               width: 80,

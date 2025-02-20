@@ -321,49 +321,7 @@ class AuthController extends GetxController {
 
 
 
-      // final response = await _repository.getUserByEmail(googleSignInAccount!.email!);
-      // response.when(
-      //   success: (data) async {
-      //     UserModel? user;
-      //     if(data.result==null)
-      //     {
-      //       user= UserModel(
-      //         email:googleSignInAccount!.email!,
-      //         password: AuthHelper.generatePassword(),);
-      //       final response = await _repository.createUser(user);
-      //       response.when(
-      //         success: (data) async {
-      //           result = data.result;
-      //           emit(
-      //             AuthState.success(result, data.message),
-      //           );
-      //           await _saveUser(context);
-      //           context.read<UserCubit>().user=result;
-      //           Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => NavbarScreen ()));
-      //           // context.pushReplacement(Routes.navBarRoute);
-      //         },
-      //         failure: (networkException) {
-      //           emit(AuthState.failure(networkException),);
-      //           ResponseHelper.onFailure(context,message: NetworkExceptions.getErrorMessage(networkException));
-      //         },
-      //       );
-      //
-      //     }else{
-      //       user=data.result;
-      //       emit(
-      //         AuthState.success(result, data.message),
-      //       );
-      //       await _saveUser(context);
-      //       context.read<UserCubit>().user=result;
-      //       Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => NavbarScreen ()));
-      //     }
-      //   },
-      //   failure: (networkException) {
-      //     emit(AuthState.failure(networkException),);
-      //     ResponseHelper.onFailure(context,message: NetworkExceptions.getErrorMessage(networkException));
-      //
-      //   },
-      // );
+
 
     } catch (error) {
       print("error $error");

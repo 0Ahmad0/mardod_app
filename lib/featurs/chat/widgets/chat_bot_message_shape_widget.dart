@@ -67,35 +67,37 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
                             : ColorsManager.chatBotMessageShapeColor.withOpacity(.8),
                   ),
                   child:
-                  isLast&&DateTime.now().difference(item?.sendingTime??DateTime.now()).inMinutes<1?
-                  AnimatedTextKit(
-                    isRepeatingAnimation:false,
-                    animatedTexts: [
-                      TypewriterAnimatedText(
+                  // isLast&&DateTime.now().difference(item?.sendingTime??DateTime.now()).inMinutes<1?
+                  // AnimatedTextKit(
+                  //   isRepeatingAnimation:false,
+                  //   animatedTexts: [
+                  //   //   TypewriterAnimatedText(
+                  //   //
+                  //   // text,
+                  //   // cursor: '',
+                  //   // textStyle: TextStyle(
+                  //   //     fontSize: 14.sp, color: ColorsManager.whiteColor),
+                  //   //   ),
+                  //   ],
+                  // )
+                  MarkdownBody(
+                    data: text,
+                    styleSheet: MarkdownStyleSheet(
+                      p:  TextStyle(color: ColorsManager.whiteColor, fontSize: 16.sp),
+                      strong:  TextStyle(color: ColorsManager.whiteColor, fontWeight: FontWeight.bold),
+                      em:  TextStyle(color: ColorsManager.whiteColor, fontStyle: FontStyle.italic),
+                      h1:  TextStyle(color: ColorsManager.whiteColor, fontSize: 24.sp, fontWeight: FontWeight.bold),
+                      h2:  TextStyle(color: ColorsManager.whiteColor, fontSize: 22.sp, fontWeight: FontWeight.bold),
+                      h3:  TextStyle(color: ColorsManager.whiteColor, fontSize: 20.sp, fontWeight: FontWeight.bold),
+                      a:  TextStyle(color: Colors.lightBlue), // تنسيق الروابط
+                    ),
+                  )
+                    //   :Text(
+                    // text,
+                    // style: TextStyle(
+                    //     fontSize: 14.sp, color: ColorsManager.whiteColor)),
 
-                    text,
-                    cursor: '',
-                    textStyle: TextStyle(
-                        fontSize: 14.sp, color: ColorsManager.whiteColor),
-                      )
-                    ],
-                  ):Text(
-                    text,
-                    style: TextStyle(
-                        fontSize: 14.sp, color: ColorsManager.whiteColor)),
 
-                    // MarkdownBody(
-                    //   data: text,
-                    //   styleSheet: MarkdownStyleSheet(
-                    //     p:  TextStyle(color: ColorsManager.whiteColor, fontSize: 16.sp),
-                    //     strong:  TextStyle(color: ColorsManager.whiteColor, fontWeight: FontWeight.bold),
-                    //     em:  TextStyle(color: ColorsManager.whiteColor, fontStyle: FontStyle.italic),
-                    //     h1:  TextStyle(color: ColorsManager.whiteColor, fontSize: 24.sp, fontWeight: FontWeight.bold),
-                    //     h2:  TextStyle(color: ColorsManager.whiteColor, fontSize: 22.sp, fontWeight: FontWeight.bold),
-                    //     h3:  TextStyle(color: ColorsManager.whiteColor, fontSize: 20.sp, fontWeight: FontWeight.bold),
-                    //     a:  TextStyle(color: Colors.lightBlue), // تنسيق الروابط
-                    //   ),
-                    // )
                 ),
                 PositionedDirectional(
                   bottom: -20,

@@ -53,7 +53,7 @@ dependencies:
 
   bcrypt:
   mailer: ^6.2.0
-  google_generative_ai: ^0.4.6
+
   flutter_markdown: ^0.7.6+1
   animated_text_kit:
   google_sign_in: ^6.2.2
