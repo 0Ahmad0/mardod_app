@@ -13,90 +13,26 @@ class Constants {
   static const double buttonHeight = 54;
 
   static List<HomeItemExploreModel> homeExploreItems = [
-    HomeItemExploreModel(
-        name: Strings.eventsAndActivitiesText,
-        icon: AssetsManager.eventsAndActivitiesIMG),
-    HomeItemExploreModel(
-        name: Strings.restaurantsAndCafesText,
-        icon: AssetsManager.restaurantsAndCafesIMG),
-    HomeItemExploreModel(
-        name: Strings.shoppingAndOffersText,
-        icon: AssetsManager.shoppingAndOffersIMG),
-    HomeItemExploreModel(
-        name: Strings.trainingProgramsText,
-        icon: AssetsManager.trainingProgramsIMG),
-    HomeItemExploreModel(
-        name: Strings.eventsAndActivitiesText,
-        icon: AssetsManager.eventsAndActivitiesIMG),
-    HomeItemExploreModel(
-        name: Strings.restaurantsAndCafesText,
-        icon: AssetsManager.restaurantsAndCafesIMG),
-    HomeItemExploreModel(
-        name: Strings.shoppingAndOffersText,
-        icon: AssetsManager.shoppingAndOffersIMG),
-    HomeItemExploreModel(
-        name: Strings.trainingProgramsText,
-        icon: AssetsManager.trainingProgramsIMG),
-    HomeItemExploreModel(
-        name: Strings.eventsAndActivitiesText,
-        icon: AssetsManager.eventsAndActivitiesIMG),
-    HomeItemExploreModel(
-        name: Strings.restaurantsAndCafesText,
-        icon: AssetsManager.restaurantsAndCafesIMG),
-    HomeItemExploreModel(
-        name: Strings.shoppingAndOffersText,
-        icon: AssetsManager.shoppingAndOffersIMG),
-    HomeItemExploreModel(
-        name: Strings.trainingProgramsText,
-        icon: AssetsManager.trainingProgramsIMG),
-  ];
-
-  static List<DrawerItemModel> drawerItems = [
-    DrawerItemModel(
-      icon: AssetsManager.homeIconIMG,
-      name: Strings.homePageText,
-    ),
-    DrawerItemModel(
-        icon: AssetsManager.logIconIMG,
-        name: Strings.logText,
-        route: '/recordRoute'),
-    DrawerItemModel(
-      icon: AssetsManager.clearLogIconIMG,
-      name: Strings.clearLogText,
-    ),
-    DrawerItemModel(
-      icon: AssetsManager.freeSpaceIconIMG,
-      name: Strings.freeSpaceText,
-    ),
+    HomeItemExploreModel(name: Strings.trendingNowText, icon: AssetsManager.trendingNowIcon),
+    HomeItemExploreModel(name: Strings.eventsAndActivitiesText, icon: AssetsManager.eventsAndActivitiesIcon),
+    HomeItemExploreModel(name: Strings.shoppingAndOffersText, icon: AssetsManager.shoppingAndOffersIMG),
+    HomeItemExploreModel(name: Strings.restaurantsAndCafesText, icon: AssetsManager.restaurantsAndCafesIMG),
+    HomeItemExploreModel(name: Strings.educationAndCareerText, icon: AssetsManager.educationAndCareerIcon),
+    HomeItemExploreModel(name: Strings.beautyAndFitnessText, icon: AssetsManager.beautyAndFitnessIcon),
+    HomeItemExploreModel(name: Strings.technologyAndAppsText, icon: AssetsManager.technologyAndAppsIcon),
+    HomeItemExploreModel(name: Strings.tourismAndTravelText, icon: AssetsManager.tourismAndTravelIcon),
+    HomeItemExploreModel(name: Strings.entrepreneurshipText, icon: AssetsManager.entrepreneurshipIcon),
+    HomeItemExploreModel(name: Strings.artsAndCultureText, icon: AssetsManager.artsAndCultureIcon),
   ];
 
   static List<String> popularTitlesList = [
-  'سينما فوكس',
-  'مهرجان عزيز مول',
-  'ملاهي الشلال',
-  'جدة بارك',
-  ];
-  static List<RecordItemModel> recordItems = [
-    RecordItemModel(
-        title: 'ما هي الأنشطة الجبلية المتاحة في الطائف؟',
-        date: '17 Sep 2023 11:21 AM'),
-    RecordItemModel(
-        title: 'فين أحصل محلات تبيع عسل أصلي بأبها؟',
-        date: '16 Sep 2023 11:21 AM'),
-    RecordItemModel(
-        title: 'وش الأنشطة العائلية اللي ممكن نسويها بالمدينة؟',
-        date: '16 Sep 2023 11:21 AM'),
-    RecordItemModel(
-        title: 'وين أفضل مطاعم تقدم أكلات شعبية بالرياض؟',
-        date: '16 Sep 2023 11:21 AM'),
-    RecordItemModel(
-        title: 'وين ألقى هدايا حلوة للحجاج والمعتمرين في مكة؟',
-        date: '16 Sep 2023 11:21 AM'),
-    RecordItemModel(
-        title: 'وش أفضل مطاعم على البحر بجدة؟', date: '17 Sep 2023 11:21 AM'),
+    'سينما فوكس',
+    'مهرجان عزيز مول',
+    'ملاهي الشلال',
+    'جدة بارك',
   ];
 
-  static const List<String> socialMediaList=[
+  static const List<String> socialMediaList = [
     AssetsManager.xIconIMG,
     AssetsManager.googleIconIMG,
     AssetsManager.facebookIconIMG,

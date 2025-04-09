@@ -219,7 +219,7 @@ class ProfileController extends GetxController {
     try {
       ConstantsWidgets.showLoading();
       await auth.currentUser?.updatePassword(password).then((value) async {
-        String hashPassword=BCrypt.hashpw(password!, BCrypt.gensalt());
+        String hashPassword=BCrypt.hashpw(password, BCrypt.gensalt());
         await FirebaseFirestore.instance
             .collection('Users')
             .doc(FirebaseAuth.instance.currentUser?.uid ?? '')

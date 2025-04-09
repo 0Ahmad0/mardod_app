@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:mardod/featurs/auth/screens/successful_changed_password_screen.dart';
+import '../screens/successful_changed_password_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:mardod/featurs/welcome/welcome_screen.dart';
+import '../../welcome/welcome_screen.dart';
 
 import '../../../../core/local/storage.dart';
 import '../../../../core/models/user_model.dart';

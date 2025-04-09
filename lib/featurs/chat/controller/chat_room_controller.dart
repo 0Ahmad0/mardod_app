@@ -8,8 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mardod/core/models/review_model.dart';
-import 'package:mardod/core/strings.dart';
+import '../../../core/models/review_model.dart';
+import '../../../core/strings.dart';
 
 import '../../../../core/enums/enums.dart';
 import '../../../../core/models/chat_model.dart';

@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 
-import 'package:mardod/core/assets_manager.dart';
-import 'package:mardod/core/colors.dart';
-import 'package:mardod/featurs/widgets/image_user_provider.dart';
+import '../../../core/assets_manager.dart';
+import '../../../core/colors.dart';
+import '../../widgets/image_user_provider.dart';
 
 import '../../../core/models/message_model.dart';
 import '../../profile/controller/profile_controller.dart';

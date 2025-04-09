@@ -6,7 +6,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mardod/core/models/review_model.dart';
+import '../../../../core/models/review_model.dart';
 
 import '../../../../../core/models/chat_model.dart';
 import '../../../../../core/models/message_model.dart';
@@ -170,8 +170,8 @@ class FirebaseFun {
     var ref ;
     // Query<Map<String, dynamic>> ref = database;
 
-    listIdUser.forEach( (val) => {
-      ref = database.where('listIdUser' ,arrayContains: val)
+    listIdUser.forEach( (val) {
+      ref = database.where('listIdUser' ,arrayContains: val);
     });
     final result=
     ref

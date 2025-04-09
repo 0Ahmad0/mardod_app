@@ -1,5 +1,4 @@
 
-import 'package:bcrypt/bcrypt.dart';
 
 import '../app_constant.dart';
 
