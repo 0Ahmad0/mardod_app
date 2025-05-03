@@ -1,5 +1,6 @@
 
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import '../../../core/models/review_model.dart';
 import '../../../core/strings.dart';
@@ -134,8 +136,22 @@ class ChatRoomController extends GetxController{
 
 
     try{
+      final url = Uri.parse('https://mardod.ngrok.app/query');
+      final headers = {'Content-Type': 'application/json'};
+      final body = json.encode({'query': message.trim()});
 
-      return Strings.errorTryAgainLater;
+      final response = await http.post(url, headers: headers, body: body)
+          .timeout(const Duration(minutes: 10)); // 10 دقائق;
+
+      if (response.statusCode == 200) {
+        final data = json.decode(utf8.decode(response.bodyBytes));
+
+        return data['answer']??''; // أو return {'answer': data['answer'], 'sources': data['sources']};
+      } else {
+        print('Request failed: ${response.statusCode}');
+        return Strings.errorTryAgainLater;
+      }
+
     }catch(e){
       return Strings.errorTryAgainLater;
     }
