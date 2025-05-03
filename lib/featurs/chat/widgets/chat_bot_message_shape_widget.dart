@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:mardod/core/models/review_model.dart';
 import 'package:mardod/featurs/chat/widgets/show_thanks_dialog_widget.dart';
 import 'package:mardod/featurs/chat/widgets/show_your_notes_dialog_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/assets_manager.dart';
 import '../../../core/colors.dart';
@@ -16,19 +18,22 @@ import '../controller/chat_controller.dart';
 import '../controller/chat_room_controller.dart';
 
 class ChatBotMessageShapeWidget extends StatelessWidget {
-  const ChatBotMessageShapeWidget({super.key, required this.text, this.item, required this.isLast, this.prevMessage});
+   ChatBotMessageShapeWidget({super.key, required this.text, this.item, required this.isLast, this.prevMessage});
 
-  final String text;
+    String text;
   final Message? item;
   final bool isLast;
-  final String? prevMessage;
+   String? prevMessage;
 
   @override
   Widget build(BuildContext context) {
+
     final sizer = MediaQuery.sizeOf(context).width;
     final bool isError=item?.textMessage.contains( Strings.errorTryAgainLater)??false;
     final bool isLoading=!(item?.checkSend??false);
     final bool isAnimation= isLast&&DateTime.now().difference(item?.sendingTime??DateTime.now()).inMinutes<1;
+
+
     return Column(
       children: [
         Row(
@@ -80,10 +85,43 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
                       ],
                     )
 
-                    :Text(
-                  text,
-                  style: TextStyle(
-                      fontSize: 14.sp, color: ColorsManager.whiteColor)),
+                    :
+                    RichText(
+                      // textDirection: TextDirection.rtl,
+                      text: TextSpan(
+                        style:  TextStyle( fontSize: 14.sp, color: ColorsManager.whiteColor),
+                        children: [
+                          TextSpan(text: text),
+                          if((item?.resources??[]).isNotEmpty)...[
+                            TextSpan(text: "\n\nالمصادر:\n"),
+                            for (String link in( item?.resources??[]))
+                              TextSpan(
+                                text: '$link\n\n',
+                                style:  TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 14.sp,
+                                  decoration: TextDecoration.underline,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () async {
+                                    final uri = Uri.parse(link);
+                                    if (await canLaunchUrl(uri)) {
+                                      await launchUrl(uri, mode: LaunchMode.externalApplication);
+                                    } else {
+                                      debugPrint('Could not launch $link');
+                                    }
+                                  },
+                              ),
+                          ]
+
+                        ],
+                      ),
+                    )
+
+                  //   Text(
+                  // text,
+                  // style: TextStyle(
+                  //     fontSize: 14.sp, color: ColorsManager.whiteColor)),
 
 
                 ),

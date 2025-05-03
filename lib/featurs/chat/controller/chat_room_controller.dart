@@ -127,14 +127,23 @@ class ChatRoomController extends GetxController{
       }
     return result;
   }
-  Future<String> _sendMessageAi(String message)async {
+  Future<Map<String,dynamic>> _sendMessageAi(String message)async {
 
 
 
 
-    if (message.trim().isEmpty) return "";
+    if (message.trim().isEmpty) return {};
 
-
+    // return{
+    //   "answer":"نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص نص",
+    //   "sources":[
+    //     "https://www.google.com",
+    //     "https://www.google.com",
+    //     "https://www.google.com",
+    //     "https://www.google.com",
+    //
+    //   ]
+    // };
     try{
       final url = Uri.parse('https://mardod.ngrok.app/query');
       final headers = {'Content-Type': 'application/json'};
@@ -146,14 +155,15 @@ class ChatRoomController extends GetxController{
       if (response.statusCode == 200) {
         final data = json.decode(utf8.decode(response.bodyBytes));
 
-        return data['answer']??''; // أو return {'answer': data['answer'], 'sources': data['sources']};
+
+        return data; // أو return {'answer': data['answer'], 'sources': data['sources']};
       } else {
         print('Request failed: ${response.statusCode}');
-        return Strings.errorTryAgainLater;
+        return {"answer":Strings.errorTryAgainLater};
       }
 
     }catch(e){
-      return Strings.errorTryAgainLater;
+      return {"answer":Strings.errorTryAgainLater};
     }
   }
   addReport(context,{required ReviewModel review, Message? message}) async {
@@ -223,17 +233,23 @@ class ChatRoomController extends GetxController{
       senderId: message.receiveId,
       receiveId: message.senderId,
       sendingTime: DateTime.now(),
-      checkSend: false,
+      checkSend: false, resources: [],
     );
     waitMessage.add(messageChatBot);
     update();
     /// await result
-    final String? textAi=await _sendMessageAi(message.textMessage);
+    final Map<String,dynamic>? mapAi=await _sendMessageAi(message.textMessage);
+    // final String? textAi=await _sendMessageAi(message.textMessage);
+    final String? textAi=mapAi?['answer'];
+    final List<String>? resourcesAi=(mapAi?['sources'] as List?)?.map((e)=>"${e}").toList();
 
     if(textAi?.contains(Strings.errorTryAgainLater)??true)
     {
+
       waitMessage.last.textMessage=textAi??'';
+      waitMessage.last.resources=resourcesAi??[];
       update();
+
       return;
     }
 
@@ -260,7 +276,9 @@ class ChatRoomController extends GetxController{
     waitMessage.remove(messageChatBot);
     update();
     messageChatBot.checkSend=true;
+
     messageChatBot.textMessage=textAi??'';
+    messageChatBot.resources=resourcesAi??[];
 
     if(result['status']){
       result =await FirebaseFun
