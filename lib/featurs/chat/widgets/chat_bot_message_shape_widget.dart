@@ -17,7 +17,7 @@ import '../../../core/strings.dart';
 import '../controller/chat_controller.dart';
 import '../controller/chat_room_controller.dart';
 
-class ChatBotMessageShapeWidget extends StatelessWidget {
+class ChatBotMessageShapeWidget extends StatefulWidget {
    ChatBotMessageShapeWidget({super.key, required this.text, this.item, required this.isLast, this.prevMessage});
 
     String text;
@@ -26,12 +26,17 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
    String? prevMessage;
 
   @override
+  State<ChatBotMessageShapeWidget> createState() => _ChatBotMessageShapeWidgetState();
+}
+
+class _ChatBotMessageShapeWidgetState extends State<ChatBotMessageShapeWidget> {
+  @override
   Widget build(BuildContext context) {
 
     final sizer = MediaQuery.sizeOf(context).width;
-    final bool isError=item?.textMessage.contains( Strings.errorTryAgainLater)??false;
-    final bool isLoading=!(item?.checkSend??false);
-    final bool isAnimation= isLast&&DateTime.now().difference(item?.sendingTime??DateTime.now()).inMinutes<1;
+    final bool isError=widget.item?.textMessage.contains( Strings.errorTryAgainLater)??false;
+    final bool isLoading=!(widget.item?.checkSend??false);
+    final bool isAnimation= widget.isLast&&DateTime.now().difference(widget.item?.sendingTime??DateTime.now()).inMinutes<1;
 
 
     return Column(
@@ -43,7 +48,7 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
             Flexible(
               child: Text(
                 DateFormat().add_jm().format(
-                  item?.sendingTime??
+                  widget.item?.sendingTime??
                       DateTime.now(),
                 ),
                 style: TextStyle(fontSize: 10.sp),
@@ -71,13 +76,17 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
                           : ColorsManager.chatBotMessageShapeColor.withOpacity(.8),
                     ),
                     child:
-                    isLast&&DateTime.now().difference(item?.sendingTime??DateTime.now()).inMinutes<1?
+                    widget.isLast&&DateTime.now().difference(widget.item?.sendingTime??DateTime.now()).inMinutes<1?
                     AnimatedTextKit(
+                      onFinished:(){
+                        setState(() {
+                        });
+                      },
                       isRepeatingAnimation:false,
                       animatedTexts: [
                         TypewriterAnimatedText(
 
-                      text,
+                      widget.text,
                       cursor: '',
                       textStyle: TextStyle(
                           fontSize: 14.sp, color: ColorsManager.whiteColor),
@@ -91,10 +100,10 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
                       text: TextSpan(
                         style:  TextStyle( fontSize: 14.sp, color: ColorsManager.whiteColor),
                         children: [
-                          TextSpan(text: text),
-                          if((item?.resources??[]).isNotEmpty)...[
+                          TextSpan(text: widget.text),
+                          if((widget.item?.resources??[]).isNotEmpty)...[
                             TextSpan(text: "\n\nالمصادر:\n"),
-                            for (String link in( item?.resources??[]))
+                            for (String link in( widget.item?.resources??[]))
                               TextSpan(
                                 text: '$link\n\n',
                                 style:  TextStyle(
@@ -137,7 +146,7 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
                   ),
                 ),
                 Visibility(
-                  visible: !isError&&!isLoading&&item?.review==null,
+                  visible: !isError&&!isLoading&&widget.item?.review==null,
                   child: PositionedDirectional(
                     bottom: -14.w,
                     start: 20.w,
@@ -152,7 +161,7 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          if(item?.review==null)...[
+                          if(widget.item?.review==null)...[
                             Expanded(
                               child: InkWell(
                                 onTap: () {
@@ -162,13 +171,13 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
                                     ColorsManager.whiteColor.withOpacity(.5),
                                     builder: (context) =>
                                         ShowYourNotesDialogWidget(
-                                          message: item,
+                                          message: widget.item,
                                           review: ReviewModel(
                                             date: DateTime.now(),
                                             review: false,
-                                            question: prevMessage,
-                                            result: text,
-                                            idMessage: item?.id,
+                                            question: widget.prevMessage,
+                                            result: widget.text,
+                                            idMessage: widget.item?.id,
                                             idChat: Get.put(ChatRoomController()).chat?.id,
 
                                           ) ,
@@ -188,12 +197,12 @@ class ChatBotMessageShapeWidget extends StatelessWidget {
                                   Get.put(ChatRoomController()).addReport(context, review: ReviewModel(
                                     date: DateTime.now(),
                                     review: true,
-                                    question: prevMessage,
-                                    result: text,
-                                    idMessage: item?.id,
+                                    question: widget.prevMessage,
+                                    result: widget.text,
+                                    idMessage: widget.item?.id,
                                     idChat: Get.put(ChatRoomController()).chat?.id,
 
-                                  ), message: item);
+                                  ), message: widget.item);
                                   // showDialog(
                                   //   context: context,
                                   //   builder: (context) => ShowThanksDialogWidget(),
