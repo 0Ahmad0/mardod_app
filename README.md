@@ -75,11 +75,31 @@ Welcome to **Mardod**, an AI-powered Q&A app that helps you find answers to ques
 ---
 ## Screenshots
 
-![App Design Screenshot 1](path/to/your/image1.png)
-> _Login Screen_
+### Splash Screen
 
-![App Design Screenshot 2](path/to/your/image2.png)
-> _AI Conversation UI_
+| ![Splash Screen](path/to/your/1.jpg) |
+| ----------------------------------------- |
+| **SignUp Screen**                        |
+| ![SignUp Screen](path/to/your/2.jpg) |
+
+### Login Screen
+| ![Login Screen](path/to/your/3.jpg) |
+| --------------------------------------- |
+| **Home Screen**                        |
+| ![Home Screen](path/to/your/4.jpg) |
+
+### Profile Screen
+| ![Profile Screen](path/to/your/5.jpg) |
+| -------------------------------------------- |
+| **Common Titles**                           |
+| ![Common Titles](path/to/your/6.jpg) |
+
+### Record Screen
+| ![Record Screen](path/to/your/7.jpg) |
+| ----------------------------------------- |
+| **Drawer Menu**                           |
+| ![Drawer Menu](path/to/your/8.jpg) |
+
 
 ---
 
