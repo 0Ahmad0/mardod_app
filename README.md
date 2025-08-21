@@ -76,28 +76,33 @@ Welcome to **Mardod**, an AI-powered Q&A app that helps you find answers to ques
 ## Screenshots
 
 ### Splash Screen
-| ![Splash Screen](https://drive.google.com/file/d/1AGluD3_12dDkv1W0hudMyZtIKwETTcVM/view?usp=drivesdk) |
+| ![Splash Screen](https://github.com/user-attachments/assets/abb90e5e-f333-488f-ad8c-f0c326aad8b2) |
 | --------------------------------------------------------- |
 | **SignUp Screen**                                         |
-| ![SignUp Screen](https://drive.google.com/file/d/1JcI9aslGh6PDV5TCjfRtpyBPwvL-LjH6/view?usp=drive_link) |
+| ![SignUp Screen](https://github.com/user-attachments/assets/5c8485f2-4da8-4eb3-8c76-840276caf0a7) |
+
+
 
 ### Login Screen
-| ![Login Screen](https://drive.google.com/file/d/1JcI9aslGh6PDV5TCjfRtpyBPwvL-LjH6/view?usp=drive_link) |
+| ![Login Screen](https://github.com/user-attachments/assets/1ed14a32-278f-4d4d-b3de-3ea9f5bf78e8) |
 | -------------------------------------------------------- |
 | **Home Screen**                                           |
-| ![Home Screen](https://drive.google.com/file/d/1WX1SEJwxsdN9YDaTiMoqYM_aB_sfQvsz/view?usp=drive_link) |
+| ![Home Screen](https://github.com/user-attachments/assets/d037dcf6-b023-4e57-94c5-0824833cbea0) |
+
 
 ### Profile Screen
-| ![Profile Screen](https://drive.google.com/file/d/11x0e4qfc37y0w4gdtOSjGCSpvh1eKjQg/view?usp=drive_link) |
+| ![Profile Screen](https://github.com/user-attachments/assets/b7f9678b-4988-4300-b024-6f51900d8f90) |
 | ----------------------------------------------------------- |
 | **Common Titles**                                           |
-| ![Common Titles](https://drive.google.com/file/d/16Nfhe4r86qE-bMbgp5IIOqgzFU__S_3I/view?usp=drive_link) |
+| ![Common Titles](https://github.com/user-attachments/assets/1d5e755f-097c-4b49-8bc8-34beba1e4f9b) |
+
 
 ### Record Screen
-| ![Record Screen](https://drive.google.com/file/d/1eFBJoWnEBE7LjcOtjK4ojSJKJHm3Wj-v/view?usp=drive_link) |
+| ![Record Screen](https://github.com/user-attachments/assets/4b6595d4-ef7d-45bf-88b1-93c5a884ea14) |
 | ---------------------------------------------------------- |
 | **Drawer Menu**                                              |
-| ![Drawer Menu](https://drive.google.com/file/d/15lzhaB2A1fbkeeo9yn0-AZIp3HJePXM4/view?usp=drive_link) |
+| ![Drawer Menu](https://github.com/user-attachments/assets/a949ea47-38ff-453e-9c4b-d62e1f578af9) |
+
 
 
 ---
