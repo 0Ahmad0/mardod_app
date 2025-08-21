@@ -76,29 +76,28 @@ Welcome to **Mardod**, an AI-powered Q&A app that helps you find answers to ques
 ## Screenshots
 
 ### Splash Screen
-
-| ![Splash Screen](path/to/your/1.jpg) |
-| ----------------------------------------- |
-| **SignUp Screen**                        |
-| ![SignUp Screen](path/to/your/2.jpg) |
+| ![Splash Screen](https://drive.google.com/file/d/1AGluD3_12dDkv1W0hudMyZtIKwETTcVM/view?usp=drive_link) |
+| --------------------------------------------------------- |
+| **SignUp Screen**                                         |
+| ![SignUp Screen](https://drive.google.com/file/d/1JcI9aslGh6PDV5TCjfRtpyBPwvL-LjH6/view?usp=drive_link) |
 
 ### Login Screen
-| ![Login Screen](path/to/your/3.jpg) |
-| --------------------------------------- |
-| **Home Screen**                        |
-| ![Home Screen](path/to/your/4.jpg) |
+| ![Login Screen](https://drive.google.com/file/d/1JcI9aslGh6PDV5TCjfRtpyBPwvL-LjH6/view?usp=drive_link) |
+| -------------------------------------------------------- |
+| **Home Screen**                                           |
+| ![Home Screen](https://drive.google.com/file/d/1WX1SEJwxsdN9YDaTiMoqYM_aB_sfQvsz/view?usp=drive_link) |
 
 ### Profile Screen
-| ![Profile Screen](path/to/your/5.jpg) |
-| -------------------------------------------- |
-| **Common Titles**                           |
-| ![Common Titles](path/to/your/6.jpg) |
+| ![Profile Screen](https://drive.google.com/file/d/11x0e4qfc37y0w4gdtOSjGCSpvh1eKjQg/view?usp=drive_link) |
+| ----------------------------------------------------------- |
+| **Common Titles**                                           |
+| ![Common Titles](https://drive.google.com/file/d/16Nfhe4r86qE-bMbgp5IIOqgzFU__S_3I/view?usp=drive_link) |
 
 ### Record Screen
-| ![Record Screen](path/to/your/7.jpg) |
-| ----------------------------------------- |
-| **Drawer Menu**                           |
-| ![Drawer Menu](path/to/your/8.jpg) |
+| ![Record Screen](https://drive.google.com/file/d/1eFBJoWnEBE7LjcOtjK4ojSJKJHm3Wj-v/view?usp=drive_link) |
+| ---------------------------------------------------------- |
+| **Drawer Menu**                                              |
+| ![Drawer Menu](https://drive.google.com/file/d/15lzhaB2A1fbkeeo9yn0-AZIp3HJePXM4/view?usp=drive_link) |
 
 
 ---
