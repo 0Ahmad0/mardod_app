@@ -76,7 +76,7 @@ Welcome to **Mardod**, an AI-powered Q&A app that helps you find answers to ques
 ## Screenshots
 
 ### Splash Screen
-| ![Splash Screen](https://drive.google.com/file/d/1AGluD3_12dDkv1W0hudMyZtIKwETTcVM/view?usp=drive_link) |
+| ![Splash Screen](https://drive.google.com/file/d/1AGluD3_12dDkv1W0hudMyZtIKwETTcVM/view?usp=drivesdk) |
 | --------------------------------------------------------- |
 | **SignUp Screen**                                         |
 | ![SignUp Screen](https://drive.google.com/file/d/1JcI9aslGh6PDV5TCjfRtpyBPwvL-LjH6/view?usp=drive_link) |
