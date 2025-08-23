@@ -74,36 +74,74 @@ Welcome to **Mardod**, an AI-powered Q&A app that helps you find answers to ques
    flutter run
 ---
 ## Screenshots
-
-### Splash Screen
-| ![Splash Screen](https://github.com/user-attachments/assets/abb90e5e-f333-488f-ad8c-f0c326aad8b2) |
-| --------------------------------------------------------- |
-| **SignUp Screen**                                         |
-| ![SignUp Screen](https://github.com/user-attachments/assets/5c8485f2-4da8-4eb3-8c76-840276caf0a7) |
-
-
-
-### Login Screen
-| ![Login Screen](https://github.com/user-attachments/assets/1ed14a32-278f-4d4d-b3de-3ea9f5bf78e8) |
-| -------------------------------------------------------- |
-| **Home Screen**                                           |
-| ![Home Screen](https://github.com/user-attachments/assets/d037dcf6-b023-4e57-94c5-0824833cbea0) |
-
-
-### Profile Screen
-| ![Profile Screen](https://github.com/user-attachments/assets/b7f9678b-4988-4300-b024-6f51900d8f90) |
-| ----------------------------------------------------------- |
-| **Common Titles**                                           |
-| ![Common Titles](https://github.com/user-attachments/assets/1d5e755f-097c-4b49-8bc8-34beba1e4f9b) |
-
-
-### Record Screen
-| ![Record Screen](https://github.com/user-attachments/assets/4b6595d4-ef7d-45bf-88b1-93c5a884ea14) |
-| ---------------------------------------------------------- |
-| **Drawer Menu**                                              |
-| ![Drawer Menu](https://github.com/user-attachments/assets/a949ea47-38ff-453e-9c4b-d62e1f578af9) |
-
-
+<div style="text-align: center">
+  <table>
+    <tr>
+      <td style="text-align: center, width: 180">
+        <b>Splash Screen</b>
+        <br>
+        <a href="https://github.com/user-attachments/assets/abb90e5e-f333-488f-ad8c-f0c326aad8b2">
+          <img alt="Splash Screen" src="https://github.com/user-attachments/assets/abb90e5e-f333-488f-ad8c-f0c326aad8b2" width="180" />
+        </a>
+      </td>
+      <td style="text-align: center, width: 180">
+        <b>SignUp Screen</b>
+        <br>
+        <a href="https://github.com/user-attachments/assets/5c8485f2-4da8-4eb3-8c76-840276caf0a7">
+          <img alt="SignUp Screen" src="https://github.com/user-attachments/assets/5c8485f2-4da8-4eb3-8c76-840276caf0a7" width="180" />
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center, width: 180">
+        <b>Login Screen</b>
+        <br>
+        <a href="https://github.com/user-attachments/assets/1ed14a32-278f-4d4d-b3de-3ea9f5bf78e8">
+          <img alt="Login Screen" src="https://github.com/user-attachments/assets/1ed14a32-278f-4d4d-b3de-3ea9f5bf78e8" width="180" />
+        </a>
+      </td>
+      <td style="text-align: center, width: 180">
+        <b>Home Screen</b>
+        <br>
+        <a href="https://github.com/user-attachments/assets/d037dcf6-b023-4e57-94c5-0824833cbea0">
+          <img alt="Home Screen" src="https://github.com/user-attachments/assets/d037dcf6-b023-4e57-94c5-0824833cbea0" width="180" />
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center, width: 180">
+        <b>Profile Screen</b>
+        <br>
+        <a href="https://github.com/user-attachments/assets/b7f9678b-4988-4300-b024-6f51900d8f90">
+          <img alt="Profile Screen" src="https://github.com/user-attachments/assets/b7f9678b-4988-4300-b024-6f51900d8f90" width="180" />
+        </a>
+      </td>
+      <td style="text-align: center, width: 180">
+        <b>Common Titles</b>
+        <br>
+        <a href="https://github.com/user-attachments/assets/1d5e755f-097c-4b49-8bc8-34beba1e4f9b">
+          <img alt="Common Titles" src="https://github.com/user-attachments/assets/1d5e755f-097c-4b49-8bc8-34beba1e4f9b" width="180" />
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center, width: 180">
+        <b>Record Screen</b>
+        <br>
+        <a href="https://github.com/user-attachments/assets/4b6595d4-ef7d-45bf-88b1-93c5a884ea14">
+          <img alt="Record Screen" src="https://github.com/user-attachments/assets/4b6595d4-ef7d-45bf-88b1-93c5a884ea14" width="180" />
+        </a>
+      </td>
+      <td style="text-align: center, width: 180">
+        <b>Drawer Menu</b>
+        <br>
+        <a href="https://github.com/user-attachments/assets/a949ea47-38ff-453e-9c4b-d62e1f578af9">
+          <img alt="Drawer Menu" src="https://github.com/user-attachments/assets/a949ea47-38ff-453e-9c4b-d62e1f578af9" width="180" />
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
 
 ---
 
